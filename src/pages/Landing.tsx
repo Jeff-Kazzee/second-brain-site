@@ -10,68 +10,67 @@ const vocab = [
   {
     term: "Second brain",
     plain:
-      "A folder of plain-text notes about your life and work that your AI reads before it answers. A method, not an app.",
+      "A personal digital system—like a notes app or organized software—where you save your thoughts, ideas, and important information so you don't have to rely on your own memory to keep track of everything. Popularized by Tiago Forte.",
   },
   {
     term: "Prompt",
     plain:
-      "Anything you send the AI. It works best when you have a specific goal in mind.",
+      "Anything you send the AI. It works best when you have a specific goal or intent in mind, because it is trained to solve problems.",
   },
   {
     term: "Context",
     plain:
-      "The background you hand over with the prompt: notes, files, links, docs. The AI cannot know these things without you.",
+      "The background information you hand over with the prompt: notes, files, links, docs, or websites. The AI cannot know these things without you providing them.",
   },
   {
     term: "Context window",
     plain:
-      "The AI's working memory. It holds a lot (several novels) but degrades as it fills, so the first files it reads should stay short.",
+      "The AI's working memory. It holds a lot (several novels) but degrades as it fills (especially after 50%), so the first files it reads should stay short and high-quality.",
   },
   {
     term: "Knowledge base",
-    plain: "Your files and notes. An organized library the AI can search.",
+    plain:
+      "A central, organized digital library where information, guides, and answers are stored so people and AI can easily search for and find what they need (your files and notes).",
   },
   {
     term: "Wiki",
     plain:
-      "Pages linked together into a shared collection. Wikipedia is the famous one. Your brain works the same way, just private.",
-  },
-  {
-    term: "Markdown",
-    plain:
-      "Plain text with simple marks: # makes a heading, **bold** makes bold. That's most of it.",
+      "A type of collaborative workspace where pages are created, edited, and linked together to build a shared collection of information (Wikipedia is the famous example; your second brain is the same, just private).",
   },
   {
     term: "AGENTS.md",
     plain:
-      "A short cue card that tells the AI how to work in a folder. It loads first, so keep it concise.",
+      "A short cue card file that tells the AI how to work in a folder. It loads first, so keep it concise, avoiding filesystem trivia.",
   },
   {
     term: "Hyperlink",
     plain:
-      "Clickable text that jumps to another file or page. Links are how the AI follows a thread through your notes.",
+      "Clickable text that jumps to another file or page. Links are how the AI follows a thread of logic through your notes.",
   },
   {
     term: "Gates",
     plain:
-      "Approval points you define. The AI pauses and asks before it sends, spends, publishes, or deletes.",
+      "Approval points you define (e.g. codified in AGENTS.md). The AI pauses and asks before it sends, spends, publishes, or deletes.",
+  },
+  {
+    term: "Loops",
+    plain:
+      "Self-healing maintenance routines: clean up stale files, fix broken links, flag conflicts. Every day it gets a little better.",
   },
 ];
 
 const deeperVocab = [
   {
     term: "Frontmatter / metadata",
-    plain: "Background labels on a note: title, date, author, topic.",
+    plain: "Hidden background details that label and organize content, such as its title, date, author, or topic.",
   },
   {
     term: "Progressive disclosure",
-    plain:
-      "Reveal information in small layers. The AI reads the map first, then only the notes it needs.",
+    plain: "Reveal information in small, useful layers so you only see what is needed at each moment.",
   },
   {
     term: "Loops",
-    plain:
-      "Small recurring maintenance runs: fix stale files, repair links, flag conflicts. Every day it gets a little better.",
+    plain: "Self-healing maintenance routines: clean up stale files, fix broken links, flag conflicts. Every day it gets a little better.",
   },
 ];
 
@@ -172,9 +171,89 @@ function SectionKicker({ children }: { children: React.ReactNode }) {
   );
 }
 
+function VocabularyCardDeck() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const total = vocab.length;
+
+  const next = () => {
+    setActiveIndex((prev) => (prev + 1) % total);
+  };
+
+  const prev = () => {
+    setActiveIndex((prev) => (prev - 1 + total) % total);
+  };
+
+  return (
+    <div className="mt-10 space-y-6">
+      {/* Term Navigator */}
+      <div className="flex flex-wrap gap-2 justify-center pb-4 border-b border-[var(--d-line)]">
+        {vocab.map((v, i) => (
+          <button
+            key={v.term}
+            type="button"
+            onClick={() => setActiveIndex(i)}
+            className={`px-3 py-1.5 rounded-full font-mono text-[12px] tracking-wider transition ${
+              activeIndex === i
+                ? "bg-[var(--d-teal)] text-white"
+                : "bg-[var(--d-card)] text-[var(--d-slate)] border border-[var(--d-line)] hover:border-[var(--d-teal)] hover:text-[var(--d-ink)]"
+            }`}
+          >
+            {v.term}
+          </button>
+        ))}
+      </div>
+
+      {/* The Active Card (Shows one word at a time) */}
+      <div className="relative min-h-[220px] rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between transition-all duration-300">
+        <div>
+          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--d-coral-ink)]">
+            Term {activeIndex + 1} of {total}
+          </span>
+          <h3 className="mt-3 font-serif text-3xl font-semibold text-[var(--d-ink)] tracking-tight">
+            {vocab[activeIndex].term}
+          </h3>
+          <p className="mt-4 text-[18px] leading-8 text-[var(--d-slate)] text-pretty">
+            {vocab[activeIndex].plain}
+          </p>
+        </div>
+
+        <div className="mt-8 flex items-center justify-between">
+          <button
+            type="button"
+            onClick={prev}
+            className="px-4 py-2 rounded-full border border-[var(--d-line)] bg-[var(--d-canvas)] font-mono text-[12px] text-[var(--d-slate)] hover:text-[var(--d-ink)] hover:border-[var(--d-teal)] transition"
+          >
+            ← Previous
+          </button>
+          
+          {/* Progress dots */}
+          <div className="flex gap-1.5">
+            {vocab.map((_, i) => (
+              <span
+                key={i}
+                className={`size-2 rounded-full transition-all ${
+                  activeIndex === i ? "bg-[var(--d-teal)] w-4" : "bg-[var(--d-line)]"
+                }`}
+              />
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={next}
+            className="px-4 py-2 rounded-full border border-[var(--d-line)] bg-[var(--d-canvas)] font-mono text-[12px] text-[var(--d-slate)] hover:text-[var(--d-ink)] hover:border-[var(--d-teal)] transition"
+          >
+            Next →
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Landing() {
   return (
-    <div className="min-h-screen bg-[var(--d-canvas)] text-[var(--d-ink)] transition-colors">
+    <div id="top" className="min-h-screen bg-[var(--d-canvas)] text-[var(--d-ink)] transition-colors">
       <a
         href="#build"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-[var(--d-teal)] focus:px-4 focus:py-2 focus:text-white"
@@ -192,6 +271,7 @@ export default function Landing() {
             </span>
           </a>
           <nav aria-label="Sections" className="hidden items-center gap-6 font-mono text-[12px] uppercase tracking-[0.14em] text-[var(--d-slate)] md:flex">
+            <a href="#rules" className="transition hover:text-[var(--d-teal-ink)]">Rules &amp; Agenda</a>
             <a href="#why" className="transition hover:text-[var(--d-teal-ink)]">Why</a>
             <a href="#words" className="transition hover:text-[var(--d-teal-ink)]">Words</a>
             <a href="#build" className="transition hover:text-[var(--d-teal-ink)]">Build</a>
@@ -203,33 +283,24 @@ export default function Landing() {
       </header>
 
       <main id="main">
-        {/* Hero */}
-        <section id="top" className="border-b border-[var(--d-line)]">
+        {/* Hero Section */}
+        <section id="hero" className="border-b border-[var(--d-line)]">
           <div className="mx-auto grid max-w-5xl gap-10 px-5 py-24 sm:px-8 sm:py-36 lg:grid-cols-[1.2fr_1fr] lg:items-center">
             <div>
-              <SectionKicker>A free two-hour workshop · hosted on Zo Computer</SectionKicker>
-              <h1 className="mt-4 font-serif text-4xl font-semibold leading-[1.08] tracking-tight sm:text-6xl">
-                Build a second brain your AI can actually read.
+              <SectionKicker>Welcome · Build hours</SectionKicker>
+              <h1 className="mt-4 font-serif text-4xl font-semibold leading-[1.08] tracking-tight sm:text-6xl text-balance">
+                Build your 2nd Brain in 2 hours.
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-8 text-[var(--d-slate)] text-pretty">
-                Right now your AI restarts from zero every conversation, so you repeat yourself
-                forever. In two hours you build a small folder of notes about you, your work, and
-                your people — and the guessing stops. No coding. If you have never touched AI
-                before, this page was written for you.
+                Welcome to Second Brain Build Hours hosted by <strong className="text-[var(--d-ink)]">Jeff Kazzee</strong> and <strong className="text-[var(--d-ink)]">Ethan Davidson</strong>. We will guide you step-by-step from ground rules and core concepts through building your own AI-readable second brain from scratch.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a
-                  href="#build"
+                  href="#rules"
                   className="inline-flex items-center gap-2 rounded-full bg-[var(--d-teal)] px-7 py-3 text-base font-medium text-white shadow-sm transition hover:bg-[var(--d-teal-dark)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d-amber)]"
                 >
-                  Get the setup prompt
+                  Start with the rules &amp; agenda
                   <ArrowDown className="size-4" aria-hidden="true" />
-                </a>
-                <a
-                  href="#why"
-                  className="font-mono text-[13px] text-[var(--d-slate)] underline decoration-[var(--d-line)] underline-offset-4 transition hover:text-[var(--d-teal-ink)]"
-                >
-                  New to AI? Start from the top.
                 </a>
               </div>
             </div>
@@ -246,90 +317,178 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* Why */}
-        <section id="why" aria-labelledby="why-h" className="border-b border-[var(--d-line)]">
+        {/* Section 1: Ground Rules & Agenda (Tell them what we're gonna tell them) */}
+        <section id="rules" className="border-b border-[var(--d-line)] bg-[var(--d-teal-panel)]">
           <div className="mx-auto max-w-5xl px-5 py-24 sm:px-8 sm:py-32">
-            <SectionKicker>First principles</SectionKicker>
-            <h2 id="why-h" className="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl text-balance">
-              What is a second brain?
-            </h2>
-            <div className="mt-10 grid gap-10 lg:gap-14 lg:grid-cols-2">
-              <div className="space-y-5 text-[17px] leading-8 text-[var(--d-slate)]">
-                <p>
-                  A second brain is a personal system where you save what you know — your projects,
-                  your people, your preferences — so you don't have to hold it all in your head. It
-                  is a <strong className="text-[var(--d-ink)]">method, not an app</strong>. Ours is
-                  the simplest possible version: a folder of plain-text files.
-                </p>
-                <p>
-                  Think of Escher's two hands drawing each other. You write the notes; the notes
-                  make your AI sharper; the sharper AI helps you write better notes. In Zo it isn't
-                  just a prompt — it's an entire workspace. Memory your AI can read.
-                </p>
-                <p>
-                  The whole workflow is one loop:{" "}
-                  <span className="font-mono text-[14px] text-[var(--d-ink)]">
-                    goal → context → answer → better structure → better answers
-                  </span>
-                  .
-                </p>
+            <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr]">
+              {/* Ground Rules */}
+              <div className="space-y-6">
+                <SectionKicker>First things first · 6 mins</SectionKicker>
+                <h2 className="font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
+                  Ground Rules &amp; Questions Protocol
+                </h2>
+                <div className="space-y-5 text-[16px] leading-7 text-[var(--d-slate)]">
+                  <p>
+                    To keep the workshop running smoothly and make sure everyone builds their second brain, please follow our questions protocol:
+                  </p>
+                  <ul className="space-y-4">
+                    <li className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-4">
+                      <strong className="block font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--d-coral-ink)]">
+                        Wait for Designated Pauses
+                      </strong>
+                      <span className="mt-1 block text-sm">
+                        We have designated spots before the end of sections for you to ask questions. Please hold your questions for those pauses (like at Halftime and the end of Q4).
+                      </span>
+                    </li>
+                    <li className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-4">
+                      <strong className="block font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--d-teal-ink)]">
+                        Raise Your Hand
+                      </strong>
+                      <span className="mt-1 block text-sm">
+                        Raise your hand on Zo if you want to go off mute and ask a question aloud during our pauses.
+                      </span>
+                    </li>
+                    <li className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-4">
+                      <strong className="block font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--d-slate)]">
+                        Overtime &amp; Networking
+                      </strong>
+                      <span className="mt-1 block text-sm">
+                        The Zo team can jump in if we are losing track of time/pace. We will also stay after the 2-hour mark to answer any leftover questions and network.
+                      </span>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 sm:p-8">
-                <h3 className="font-serif text-xl font-semibold">The payoff, in one example</h3>
-                <dl className="mt-5 space-y-5">
-                  <div>
-                    <dt className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--d-coral-ink)]">
-                      Before
-                    </dt>
-                    <dd className="mt-1.5 leading-7 text-[var(--d-slate)]">
-                      "Draft a follow-up email to my client." The AI knows nothing, so you get a
-                      generic template with the wrong tone and blanks where the names go.
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--d-teal-ink)]">
-                      After
-                    </dt>
-                    <dd className="mt-1.5 leading-7 text-[var(--d-slate)]">
-                      Same prompt. The AI reads <code className="font-mono text-[13px] text-[var(--d-ink)]">PEOPLE.md</code> and{" "}
-                      <code className="font-mono text-[13px] text-[var(--d-ink)]">WORK.md</code> first, so it knows the client,
-                      the project, and how you write. The draft sounds like you.
-                    </dd>
-                  </div>
-                </dl>
+
+              {/* Agenda */}
+              <div className="space-y-6">
+                <SectionKicker>Overview</SectionKicker>
+                <h2 className="font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
+                  The Two-Hour Agenda
+                </h2>
+                <p className="text-[16px] leading-7 text-[var(--d-slate)]">
+                  Here is how we will progress through the presentation. We tell you what we're going to tell you, teach you, then wrap up with what we told you.
+                </p>
+                <ol className="divide-y divide-[var(--d-line)] rounded-xl border border-[var(--d-line)] bg-[var(--d-card)]">
+                  {agenda.map((a) => (
+                    <li key={a.q} className="grid gap-2 p-4 sm:grid-cols-[80px_100px_1fr] sm:gap-4">
+                      <p className="font-mono text-[12px] font-medium text-[var(--d-coral-ink)]">{a.q}</p>
+                      <p className="font-mono text-[12px] text-[var(--d-slate)]">{a.time}</p>
+                      <div>
+                        <h3 className="font-serif text-base font-semibold">{a.title}</h3>
+                        <p className="mt-1 text-sm leading-6 text-[var(--d-slate)]">{a.body}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+                <p className="font-mono text-[11px] leading-5 text-[var(--d-slate)]">
+                  * Note: Times are estimates. Questions live in designated pauses after Q2 and Q4.
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Word bank */}
+        {/* Section 2: What is a Second Brain? (Tell them) */}
+        <section id="why" className="border-b border-[var(--d-line)]">
+          <div className="mx-auto max-w-5xl px-5 py-24 sm:px-8 sm:py-32">
+            <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+              <div className="space-y-6">
+                <SectionKicker>First principles · 10 mins</SectionKicker>
+                <h2 className="font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
+                  What is a second brain?
+                </h2>
+                <div className="space-y-5 text-[17px] leading-8 text-[var(--d-slate)] text-pretty">
+                  <p>
+                    Everyone has a million things to keep track of. The main purpose of a second brain is to store all the knowledge, info, and preferences you want an AI to access for day-to-day work.
+                  </p>
+                  <p>
+                    <strong className="text-[var(--d-ink)]">Without a second brain, your AI restarts from zero every single conversation.</strong> You are forced to repeat yourself and re-explain your work forever.
+                  </p>
+                  <p>
+                    A second brain is a productivity methodology (popularized by Tiago Forte) rather than a generic app label. It is like a paintbrush and canvas — Escher's two hands drawing each other. You write the notes, the notes make your AI sharper, and the sharper AI helps you write better notes.
+                  </p>
+                  <p>
+                    In Zo, your second brain is an entire workspace folder of plain-text files that your AI reads dynamically. Memory your AI can read.
+                  </p>
+                </div>
+              </div>
+
+              {/* Joanna's Second Brain Visual */}
+              <div className="space-y-4">
+                <figure className="relative">
+                  <img
+                    src="/images/joannas_second_brain.png"
+                    alt="Mockup of Joanna's second brain workspace in Zo, showing files like USER.md and AGENTS.md."
+                    className="w-full rounded-2xl border border-[var(--d-line)] shadow-[0_24px_80px_rgba(0,0,0,0.12)]"
+                  />
+                  <figcaption className="mt-3 text-center font-mono text-[11px] text-[var(--d-slate)]">
+                    Visual Example: Joanna's Second Brain workspace showing connected Markdown files.
+                  </figcaption>
+                </figure>
+                <div className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-5 text-sm leading-6 text-[var(--d-slate)]">
+                  <span className="font-mono text-[12px] font-semibold uppercase tracking-[0.1em] text-[var(--d-teal-ink)]">How it connects:</span>
+                  <ul className="mt-2 list-disc pl-5 space-y-1">
+                    <li><code className="text-[var(--d-ink)]">AGENTS.md</code>: The cue card directing the AI.</li>
+                    <li><code className="text-[var(--d-ink)]">USER.md</code>: Joanna's personal guidelines and preferences.</li>
+                    <li><code className="text-[var(--d-ink)]">WORK.md</code> &amp; <code className="text-[var(--d-ink)]">PEOPLE.md</code>: Active projects and client contacts.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            {/* Why You Want a Second Brain */}
+            <div className="mt-16 pt-16 border-t border-[var(--d-line)]">
+              <SectionKicker>The Payoff</SectionKicker>
+              <h3 className="mt-3 font-serif text-2xl font-semibold tracking-tight sm:text-3xl">
+                Why do you want a second brain?
+              </h3>
+              <div className="mt-8 grid gap-6 sm:grid-cols-3">
+                <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
+                  <span className="text-3xl" role="img" aria-label="brain">🧠</span>
+                  <h4 className="mt-4 font-serif text-lg font-semibold">To remember things for you</h4>
+                  <p className="mt-2 text-sm leading-6 text-[var(--d-slate)]">
+                    You have a million things to keep track of. Save your projects, client notes, reference documents, and plans in one place so your own memory doesn't have to carry the load.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm border-l-4 border-l-[var(--d-teal)]">
+                  <span className="text-3xl" role="img" aria-label="user">👤</span>
+                  <h4 className="mt-4 font-serif text-lg font-semibold">To work for you, LIKE YOU</h4>
+                  <p className="mt-2 text-sm leading-6 text-[var(--d-slate)]">
+                    Because it reads your specific files (<code className="font-mono text-[11px]">USER.md</code>, <code className="font-mono text-[11px]">WORK.md</code>) before it drafts a message or plans a task, the AI acts with your voice, context, and standards.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
+                  <span className="text-3xl" role="img" aria-label="lightning">⚡</span>
+                  <h4 className="mt-4 font-serif text-lg font-semibold">To work while you sleep</h4>
+                  <p className="mt-2 text-sm leading-6 text-[var(--d-slate)]">
+                    By codifying background rules and scheduling maintenance loops, your second brain cleans up stale files, updates state sheets, and queues tasks overnight.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 3: Shared Vocabulary (Tell them) */}
         <section id="words" aria-labelledby="words-h" className="border-b border-[var(--d-line)] bg-[var(--d-teal-panel)]">
           <div className="mx-auto max-w-5xl px-5 py-24 sm:px-8 sm:py-32">
-            <SectionKicker>Shared vocabulary</SectionKicker>
+            <SectionKicker>Shared vocabulary · Q1 · 15 mins</SectionKicker>
             <h2 id="words-h" className="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl text-balance">
               Ten words, so we're never confused
             </h2>
             <p className="mt-4 max-w-2xl leading-8 text-[var(--d-slate)]">
-              From here on the workshop uses these exact words. Skim them once; everything after
-              this gets easier.
+              From this point on, the workshop uses these exact words. Skim them once; everything after this gets easier. We present them one at a time for clarity.
             </p>
-            <dl className="mt-12 grid gap-x-12 gap-y-8 sm:grid-cols-2">
-              {vocab.map((v) => (
-                <div key={v.term} className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-5">
-                  <dt className="font-mono text-[13px] font-medium uppercase tracking-[0.12em] text-[var(--d-teal-ink)]">
-                    {v.term}
-                  </dt>
-                  <dd className="mt-2 leading-7 text-[var(--d-slate)]">{v.plain}</dd>
-                </div>
-              ))}
-            </dl>
+            
+            <VocabularyCardDeck />
           </div>
         </section>
 
-        {/* Slides */}
+        {/* Section 4: Slide concepts */}
         <section id="slides" aria-labelledby="slides-h" className="border-b border-[var(--d-line)]">
           <div className="mx-auto max-w-5xl px-5 py-24 sm:px-8 sm:py-32">
-            <SectionKicker>The six ideas</SectionKicker>
+            <SectionKicker>The six ideas · 5 mins</SectionKicker>
             <h2 id="slides-h" className="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl text-balance">
               Everything we teach, in six cards
             </h2>
@@ -365,10 +524,10 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* Build */}
+        {/* Section 5: The Build (Q2) */}
         <section id="build" aria-labelledby="build-h" className="border-b border-[var(--d-line)]">
           <div className="mx-auto max-w-5xl px-5 py-24 sm:px-8 sm:py-32">
-            <SectionKicker>The build · Q2</SectionKicker>
+            <SectionKicker>The build · Q2 · 20 mins</SectionKicker>
             <h2 id="build-h" className="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl text-balance">
               Build yours in three steps
             </h2>
@@ -445,20 +604,29 @@ export default function Landing() {
                 </div>
               </li>
             </ol>
+
+            {/* Halftime Q&A Pause */}
+            <div className="mt-20 rounded-2xl border-2 border-dashed border-[var(--d-coral)] bg-[var(--d-coral-panel)] p-6 sm:p-8 text-center">
+              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--d-coral-ink)]">
+                Half time pause · 10 minutes
+              </span>
+              <h3 className="mt-2 font-serif text-2xl font-semibold">Questions &amp; Troubleshooting Break</h3>
+              <p className="mt-3 max-w-xl mx-auto leading-7 text-[var(--d-slate)]">
+                We have completed the basic build! Raise your hand if you want to go off mute. We will take a 10-minute break to clarify vocabulary and help anyone who got stuck before we move to advanced maintenance patterns.
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* Deeper */}
+        {/* Section 6: Deeper Dive (Q3) */}
         <section id="deeper" aria-labelledby="deeper-h" className="border-b border-[var(--d-line)] bg-[var(--d-teal-panel)]">
           <div className="mx-auto max-w-5xl px-5 py-24 sm:px-8 sm:py-32">
-            <SectionKicker>The deeper dive · Q3</SectionKicker>
+            <SectionKicker>The deeper dive · Q3 · 20 mins</SectionKicker>
             <h2 id="deeper-h" className="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl text-balance">
               Keep it alive
             </h2>
             <p className="mt-4 max-w-2xl leading-8 text-[var(--d-slate)]">
-              A brain you never touch goes stale. Real brains prune unused pathways and strengthen
-              the ones that fire together — yours should too. Three more words, then two patterns
-              you can steal.
+              A brain you never touch goes stale. Just like brain plasticity (dendritic pruning and pathways that wire together by firing together), your digital second brain needs maintenance loops to stay healthy.
             </p>
 
             <dl className="mt-12 grid gap-x-12 gap-y-8 sm:grid-cols-3">
@@ -502,36 +670,29 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* Agenda */}
-        <section id="agenda" aria-labelledby="agenda-h" className="border-b border-[var(--d-line)]">
-          <div className="mx-auto max-w-5xl px-5 py-24 sm:px-8 sm:py-32">
-            <SectionKicker>Run of show</SectionKicker>
-            <h2 id="agenda-h" className="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl text-balance">
-              How the two hours go
+        {/* Section 7: Show & Tell (Q4) */}
+        <section id="showtell" className="border-b border-[var(--d-line)]">
+          <div className="mx-auto max-w-5xl px-5 py-24 sm:px-8 sm:py-32 text-center">
+            <SectionKicker>Demos · Q4 · 20 mins</SectionKicker>
+            <h2 className="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
+              Volunteer Show &amp; Tell
             </h2>
-            <ol className="mt-8 divide-y divide-[var(--d-line)] rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)]">
-              {agenda.map((a) => (
-                <li key={a.q} className="grid gap-2 p-5 sm:grid-cols-[110px_110px_1fr] sm:gap-6 sm:p-6">
-                  <p className="font-mono text-[13px] font-medium text-[var(--d-coral-ink)]">{a.q}</p>
-                  <p className="font-mono text-[13px] text-[var(--d-slate)]">{a.time}</p>
-                  <div>
-                    <h3 className="font-serif text-lg font-semibold">{a.title}</h3>
-                    <p className="mt-1 leading-7 text-[var(--d-slate)]">{a.body}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-            <p className="mt-4 font-mono text-[12px] leading-6 text-[var(--d-slate)]">
-              Times are generous estimates — we run ahead of them, not behind. Questions live in
-              the pauses after Q2 and Q4.
+            <p className="mt-4 max-w-2xl mx-auto leading-8 text-[var(--d-slate)] text-pretty">
+              Now it's your turn! We will pick on 2 or 3 volunteers to show their new second brains. You have 2-3 minutes to demo your workspace setup on Zo.
             </p>
+            <div className="mt-8 max-w-xl mx-auto rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-6">
+              <strong className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--d-coral-ink)]">Demos Protocol:</strong>
+              <p className="mt-2 text-sm leading-6 text-[var(--d-slate)]">
+                Raise your hand on Zo to volunteer. We'll start with 2 or 3 people, and then expand to others if time permits!
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* Hosts */}
+        {/* Section 8: Hosts / Plugs */}
         <section id="hosts" aria-labelledby="hosts-h" className="border-b border-[var(--d-line)]">
           <div className="mx-auto max-w-5xl px-5 py-24 sm:px-8 sm:py-32">
-            <SectionKicker>Shameless plugs</SectionKicker>
+            <SectionKicker>Shameless plugs · 5 mins</SectionKicker>
             <h2 id="hosts-h" className="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl text-balance">
               Your hosts
             </h2>
@@ -590,6 +751,27 @@ export default function Landing() {
                   </a>
                 </div>
               </article>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 9: Wrap-up (Tell them what we told them) */}
+        <section id="wrapup" className="border-b border-[var(--d-line)] bg-[var(--d-teal-panel)]">
+          <div className="mx-auto max-w-3xl px-5 py-20 text-center sm:px-8">
+            <SectionKicker>Summary</SectionKicker>
+            <h2 className="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
+              What we accomplished today
+            </h2>
+            <div className="mt-6 text-left space-y-4 text-[16px] leading-7 text-[var(--d-slate)] font-serif italic">
+              <p>
+                "We covered the fundamental theory of a second brain—how structured digital note-taking prevents your AI from forgetting context and restarts from zero." 
+              </p>
+              <p>
+                "During the hands-on session, you built a minimalist, five-file second brain on Zo. We then explored advanced maintenance patterns to prevent it from going stale, and closed with live community demos." 
+              </p>
+              <p>
+                "Your AI is now equipped with stable memory. Keep building, link your files, and add one line tomorrow to keep it growing!"
+              </p>
             </div>
           </div>
         </section>
