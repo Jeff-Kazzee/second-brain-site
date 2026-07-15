@@ -113,8 +113,6 @@ const agenda = [
   },
 ];
 
-const bonusPrompt =
-  "Can you make me a visual representation of my second brain? Put it on my zo space.";
 
 const maintenanceLoop = `## Brain Maintenance
 
@@ -271,12 +269,13 @@ export default function Landing() {
             </span>
           </a>
           <nav aria-label="Sections" className="hidden items-center gap-6 font-mono text-[12px] uppercase tracking-[0.14em] text-[var(--d-slate)] md:flex">
+            <a href="#hosts" className="transition hover:text-[var(--d-teal-ink)]">Hosts</a>
             <a href="#rules" className="transition hover:text-[var(--d-teal-ink)]">Rules &amp; Agenda</a>
             <a href="#why" className="transition hover:text-[var(--d-teal-ink)]">Why</a>
             <a href="#words" className="transition hover:text-[var(--d-teal-ink)]">Words</a>
             <a href="#build" className="transition hover:text-[var(--d-teal-ink)]">Build</a>
             <a href="#deeper" className="transition hover:text-[var(--d-teal-ink)]">Go deeper</a>
-            <a href="#hosts" className="transition hover:text-[var(--d-teal-ink)]">Hosts</a>
+            <a href="#benefits" className="transition hover:text-[var(--d-teal-ink)]">Outcomes</a>
           </nav>
           <ThemeToggle />
         </div>
@@ -296,10 +295,10 @@ export default function Landing() {
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a
-                  href="#rules"
+                  href="#hosts"
                   className="inline-flex items-center gap-2 rounded-full bg-[var(--d-teal)] px-7 py-3 text-base font-medium text-white shadow-sm transition hover:bg-[var(--d-teal-dark)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d-amber)]"
                 >
-                  Start with the rules &amp; agenda
+                  Meet your hosts
                   <ArrowDown className="size-4" aria-hidden="true" />
                 </a>
               </div>
@@ -314,6 +313,86 @@ export default function Landing() {
                 Your notes in. Real answers out.
               </figcaption>
             </figure>
+          </div>
+        </section>
+
+        {/* Section 8: Hosts / Plugs */}
+        <section id="hosts" aria-labelledby="hosts-h" className="border-b border-[var(--d-line)]">
+          <div className="mx-auto max-w-5xl px-5 py-24 sm:px-8 sm:py-32">
+            <SectionKicker>Shameless plugs · 5 mins</SectionKicker>
+            <h2 id="hosts-h" className="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl text-balance">
+              Your hosts
+            </h2>
+            <div className="mt-12 grid gap-x-16 gap-y-14 lg:grid-cols-2">
+              <article className="border-t border-[var(--d-line)] pt-8 flex flex-col sm:flex-row gap-6 items-start">
+                <img
+                  src="https://images.lumacdn.com/uploads/5f/824b0594-ac39-4636-aa28-f683a498e26a.png"
+                  alt="Jeff Kazzee"
+                  className="size-20 rounded-full object-cover border border-[var(--d-line)] shadow-sm shrink-0"
+                />
+                <div>
+                  <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-[var(--d-teal-ink)]">Host</p>
+                  <h3 className="mt-2 font-serif text-2xl font-semibold">Jeff Kazzee</h3>
+                  <p className="mt-3 leading-7 text-[var(--d-slate)]">
+                    A second brain is like a garden: worth having, better with a gardener. Jeff builds
+                    and maintains personal and company brains — book a 1:1 to talk yours out, or email
+                    him with follow-up questions.
+                  </p>
+                  <div className="mt-5 flex flex-wrap gap-3">
+                    <a
+                      href="https://jeffkazzee.zo.space/work-with-me"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="rounded-full bg-[var(--d-teal)] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[var(--d-teal-dark)]"
+                    >
+                      Book a 1:1 with Jeff
+                    </a>
+                    <a
+                      href="https://jeffkazzee.zo.space"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="rounded-full border border-[var(--d-line)] px-5 py-2.5 text-sm font-medium text-[var(--d-ink)] transition hover:border-[var(--d-teal)]"
+                    >
+                      jeffkazzee.zo.space
+                    </a>
+                  </div>
+                </div>
+              </article>
+              <article className="border-t border-[var(--d-line)] pt-8 flex flex-col sm:flex-row gap-6 items-start">
+                <img
+                  src="https://images.lumacdn.com/avatars/eh/b4b63086-7ee6-44ae-85de-5b898cdc0055.jpg"
+                  alt="Ethan Davidson"
+                  className="size-20 rounded-full object-cover border border-[var(--d-line)] shadow-sm shrink-0"
+                />
+                <div>
+                  <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-[var(--d-coral-ink)]">Host</p>
+                  <h3 className="mt-2 font-serif text-2xl font-semibold">Ethan Davidson</h3>
+                  <p className="mt-3 leading-7 text-[var(--d-slate)]">
+                    Ethan builds Wazoo, a workbench for structured, queryable world knowledge — the
+                    same idea as your second brain, taken to planetary scale. Sign up to follow the
+                    build.
+                  </p>
+                  <div className="mt-5 flex flex-wrap gap-3">
+                    <a
+                      href="https://wazoo.dev"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="rounded-full bg-[var(--d-coral)] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[var(--d-coral-ink)]"
+                    >
+                      Sign up for Wazoo
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/in/etok/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="rounded-full border border-[var(--d-line)] px-5 py-2.5 text-sm font-medium text-[var(--d-ink)] transition hover:border-[var(--d-coral)]"
+                    >
+                      Ethan on LinkedIn
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
           </div>
         </section>
 
@@ -587,20 +666,11 @@ export default function Landing() {
                 <div className="min-w-0">
                   <h3 className="font-serif text-xl font-semibold">Paste the prompt</h3>
                   <p className="mt-2 max-w-2xl leading-7 text-[var(--d-slate)]">
-                    One message. Five connected files. Zo drafts them from your context and writes{" "}
-                    <span className="font-mono text-[14px]">Unknown</span> instead of making
-                    things up.
+                    One message. Five connected files, plus a visual representation of your second brain built on your own Zo Space. Zo drafts them from your context and writes <span className="font-mono text-[14px]">Unknown</span> instead of making things up.
                   </p>
                   <div className="mt-6 max-w-3xl">
                     <SetupPrompt />
                   </div>
-                  <div className="mt-5 flex flex-wrap items-center gap-3">
-                    <p className="font-mono text-[12px] text-[var(--d-slate)]">Bonus, after it finishes:</p>
-                    <CopyChip text={bonusPrompt} label="Copy the visual-brain prompt" />
-                  </div>
-                  <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--d-slate)]">
-                    "{bonusPrompt}" — Zo will draw your brain as a page on your own Zo Space.
-                  </p>
                 </div>
               </li>
             </ol>
@@ -670,6 +740,45 @@ export default function Landing() {
           </div>
         </section>
 
+        {/* Section 6.5: What You Can Get Out of Your Second Brain */}
+        <section id="benefits" className="border-b border-[var(--d-line)] bg-[var(--d-canvas)]">
+          <div className="mx-auto max-w-5xl px-5 py-24 sm:px-8 sm:py-32">
+            <SectionKicker>Outcomes · 10 mins</SectionKicker>
+            <h2 className="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl text-balance">
+              What you can get out of your second brain
+            </h2>
+            <p className="mt-4 max-w-2xl leading-8 text-[var(--d-slate)]">
+              A second brain is not just about organizing files; it is about extending your AI's power to help you work faster, remember everything, and automate your workflow.
+            </p>
+            <div className="mt-12 grid gap-8 sm:grid-cols-2">
+              <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
+                <h3 className="font-serif text-xl font-semibold text-[var(--d-ink)]">🚀 Instant Context Injection</h3>
+                <p className="mt-3 text-sm leading-6 text-[var(--d-slate)]">
+                  Paste notes directly into any chat session, instantly educating your AI on your specific business goals, projects, and custom standards. No more repeated setups.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
+                <h3 className="font-serif text-xl font-semibold text-[var(--d-ink)]">✨ Accurate &amp; Consistent Output</h3>
+                <p className="mt-3 text-sm leading-6 text-[var(--d-slate)]">
+                  No more generic draft templates, hallucinations, or empty placeholders. The AI reads your local directories to mirror your exact tone, preferences, and details.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
+                <h3 className="font-serif text-xl font-semibold text-[var(--d-ink)]">🛡️ Operations &amp; Safeguards</h3>
+                <p className="mt-3 text-sm leading-6 text-[var(--d-slate)]">
+                  Leverage structured approval gates (defined in <code className="font-mono text-[12.5px] text-[var(--d-ink)]">AGENTS.md</code>) so your AI handles draft emails and database checks, while pausing for your explicit sign-off before executing.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
+                <h3 className="font-serif text-xl font-semibold text-[var(--d-ink)]">🔄 Self-Improving Memory Loop</h3>
+                <p className="mt-3 text-sm leading-6 text-[var(--d-slate)]">
+                  As you write new notes and update your context files, your AI's knowledge base dynamically evolves. The system heals its own stale links and updates memory maps while you sleep.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Section 7: Show & Tell (Q4) */}
         <section id="showtell" className="border-b border-[var(--d-line)]">
           <div className="mx-auto max-w-5xl px-5 py-24 sm:px-8 sm:py-32 text-center">
@@ -689,71 +798,6 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* Section 8: Hosts / Plugs */}
-        <section id="hosts" aria-labelledby="hosts-h" className="border-b border-[var(--d-line)]">
-          <div className="mx-auto max-w-5xl px-5 py-24 sm:px-8 sm:py-32">
-            <SectionKicker>Shameless plugs · 5 mins</SectionKicker>
-            <h2 id="hosts-h" className="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl text-balance">
-              Your hosts
-            </h2>
-            <div className="mt-12 grid gap-x-16 gap-y-14 lg:grid-cols-2">
-              <article className="border-t border-[var(--d-line)] pt-8">
-                <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-[var(--d-teal-ink)]">Host</p>
-                <h3 className="mt-3 font-serif text-2xl font-semibold">Jeff Kazzee</h3>
-                <p className="mt-3 leading-7 text-[var(--d-slate)]">
-                  A second brain is like a garden: worth having, better with a gardener. Jeff builds
-                  and maintains personal and company brains — book a 1:1 to talk yours out, or email
-                  him with follow-up questions.
-                </p>
-                <div className="mt-5 flex flex-wrap gap-3">
-                  <a
-                    href="https://jeffkazzee.zo.space/work-with-me"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="rounded-full bg-[var(--d-teal)] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[var(--d-teal-dark)]"
-                  >
-                    Book a 1:1 with Jeff
-                  </a>
-                  <a
-                    href="https://jeffkazzee.zo.space"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="rounded-full border border-[var(--d-line)] px-5 py-2.5 text-sm font-medium text-[var(--d-ink)] transition hover:border-[var(--d-teal)]"
-                  >
-                    jeffkazzee.zo.space
-                  </a>
-                </div>
-              </article>
-              <article className="border-t border-[var(--d-line)] pt-8">
-                <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-[var(--d-coral-ink)]">Host</p>
-                <h3 className="mt-3 font-serif text-2xl font-semibold">Ethan Davidson</h3>
-                <p className="mt-3 leading-7 text-[var(--d-slate)]">
-                  Ethan builds Wazoo, a workbench for structured, queryable world knowledge — the
-                  same idea as your second brain, taken to planetary scale. Sign up to follow the
-                  build.
-                </p>
-                <div className="mt-5 flex flex-wrap gap-3">
-                  <a
-                    href="https://wazoo.dev"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="rounded-full bg-[var(--d-coral)] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[var(--d-coral-ink)]"
-                  >
-                    Sign up for Wazoo
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/etok/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="rounded-full border border-[var(--d-line)] px-5 py-2.5 text-sm font-medium text-[var(--d-ink)] transition hover:border-[var(--d-coral)]"
-                  >
-                    Ethan on LinkedIn
-                  </a>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
 
         {/* Section 9: Wrap-up (Tell them what we told them) */}
         <section id="wrapup" className="border-b border-[var(--d-line)] bg-[var(--d-teal-panel)]">
