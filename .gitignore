@@ -1,0 +1,22 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+
+# Internal planning and handoff material is not part of the public source release.
+REDESIGN-HANDOFF.prompt.md
+_plan.md
+copy.md
+outreach-draft.md
+backend-lib/
+
+# Unused Zo starter files kept locally but omitted from this focused release.
+public/images/hero-context-flow_1.png
+public/images/pegasus.png
+src/components/kit/
+src/components/ui/
+src/hooks/
+src/lib/
