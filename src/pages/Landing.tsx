@@ -460,23 +460,23 @@ export default function Landing() {
               <div className="mt-8 grid gap-6 sm:grid-cols-3">
                 <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
                   <span className="text-3xl" role="img" aria-label="brain">🧠</span>
-                  <h4 className="mt-4 font-serif text-lg font-semibold">To remember things for you</h4>
+                  <h4 className="mt-4 font-serif text-lg font-semibold">Remember for you</h4>
                   <p className="mt-2 text-sm leading-6 text-[var(--d-slate)]">
-                    You have a million things to keep track of. Save your projects, client notes, reference documents, and plans in one place so your own memory doesn't have to carry the load.
+                    Save your projects, client notes, and plans in one place. Offload the mental overhead of tracking a million details.
                   </p>
                 </div>
                 <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm border-l-4 border-l-[var(--d-teal)]">
                   <span className="text-3xl" role="img" aria-label="user">👤</span>
-                  <h4 className="mt-4 font-serif text-lg font-semibold">To work for you, LIKE YOU</h4>
+                  <h4 className="mt-4 font-serif text-lg font-semibold">Work like you</h4>
                   <p className="mt-2 text-sm leading-6 text-[var(--d-slate)]">
-                    Because it reads your specific files (<code className="font-mono text-[11px]">USER.md</code>, <code className="font-mono text-[11px]">WORK.md</code>) before it drafts a message or plans a task, the AI acts with your voice, context, and standards.
+                    Your AI reads <code className="font-mono text-[11px]">USER.md</code> and <code className="font-mono text-[11px]">WORK.md</code> before drafting messages, acting with your exact voice and standards.
                   </p>
                 </div>
                 <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
                   <span className="text-3xl" role="img" aria-label="lightning">⚡</span>
-                  <h4 className="mt-4 font-serif text-lg font-semibold">To work while you sleep</h4>
+                  <h4 className="mt-4 font-serif text-lg font-semibold">Work while you sleep</h4>
                   <p className="mt-2 text-sm leading-6 text-[var(--d-slate)]">
-                    By codifying background rules and scheduling maintenance loops, your second brain cleans up stale files, updates state sheets, and queues tasks overnight.
+                    Codify background rules and schedule maintenance loops to clean stale files and run automation tasks overnight.
                   </p>
                 </div>
               </div>
@@ -683,31 +683,31 @@ export default function Landing() {
               What you can get out of your second brain
             </h2>
             <p className="mt-4 max-w-2xl leading-8 text-[var(--d-slate)]">
-              A second brain is not just about organizing files; it is about extending your AI's power to help you work faster, remember everything, and automate your workflow.
+              A second brain extends your AI's power so you can work faster, remember everything, and automate your workflow.
             </p>
             <div className="mt-12 grid gap-8 sm:grid-cols-2">
               <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
-                <h3 className="font-serif text-xl font-semibold text-[var(--d-ink)]">🚀 Instant Context Injection</h3>
+                <h3 className="font-serif text-xl font-semibold text-[var(--d-ink)]">🚀 Zero-Setup Context</h3>
                 <p className="mt-3 text-sm leading-6 text-[var(--d-slate)]">
-                  Paste notes directly into any chat session, instantly educating your AI on your specific business goals, projects, and custom standards. No more repeated setups.
+                  Instantly educate your AI on your specific business goals, projects, and standards in any chat session. No more repeating yourself.
                 </p>
               </div>
               <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
-                <h3 className="font-serif text-xl font-semibold text-[var(--d-ink)]">✨ Accurate &amp; Consistent Output</h3>
+                <h3 className="font-serif text-xl font-semibold text-[var(--d-ink)]">✨ Hallucination-Free Drafts</h3>
                 <p className="mt-3 text-sm leading-6 text-[var(--d-slate)]">
-                  No more generic draft templates, hallucinations, or empty placeholders. The AI reads your local directories to mirror your exact tone, preferences, and details.
+                  The AI reads your local files to mirror your exact style and preferences, avoiding generic templates and empty placeholders.
                 </p>
               </div>
               <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
-                <h3 className="font-serif text-xl font-semibold text-[var(--d-ink)]">🛡️ Operations &amp; Safeguards</h3>
+                <h3 className="font-serif text-xl font-semibold text-[var(--d-ink)]">🛡️ Safe Automation Gates</h3>
                 <p className="mt-3 text-sm leading-6 text-[var(--d-slate)]">
-                  Leverage structured approval gates (defined in <code className="font-mono text-[12.5px] text-[var(--d-ink)]">AGENTS.md</code>) so your AI handles draft emails and database checks, while pausing for your explicit sign-off before executing.
+                  Define approval gates in <code className="font-mono text-[12.5px] text-[var(--d-ink)]">AGENTS.md</code> so the AI drafts emails or inspects data, but always pauses for your final approval before executing.
                 </p>
               </div>
               <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
-                <h3 className="font-serif text-xl font-semibold text-[var(--d-ink)]">🔄 Self-Improving Memory Loop</h3>
+                <h3 className="font-serif text-xl font-semibold text-[var(--d-ink)]">🔄 Dynamic Auto-Updates</h3>
                 <p className="mt-3 text-sm leading-6 text-[var(--d-slate)]">
-                  As you write new notes and update your context files, your AI's knowledge base dynamically evolves. The system heals its own stale links and updates memory maps while you sleep.
+                  Your AI's memory heals its own stale links and updates index maps automatically as you write notes and update folders.
                 </p>
               </div>
             </div>
