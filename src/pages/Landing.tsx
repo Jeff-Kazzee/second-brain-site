@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ArrowDown, Check, Copy } from "lucide-react";
 import { slides } from "@/data/cards";
 import SetupPrompt from "@/components/SetupPrompt";
@@ -135,6 +135,7 @@ function SectionKicker({ children }: { children: React.ReactNode }) {
 function VocabularyCardDeck() {
   const [activeIndex, setActiveIndex] = useState(0);
   const total = vocab.length;
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
   const next = () => {
     setActiveIndex((prev) => (prev + 1) % total);
@@ -142,6 +143,34 @@ function VocabularyCardDeck() {
 
   const prev = () => {
     setActiveIndex((prev) => (prev - 1 + total) % total);
+  };
+
+  const selectTabFromKeyboard = (
+    event: React.KeyboardEvent<HTMLButtonElement>,
+    index: number,
+  ) => {
+    let nextIndex: number;
+
+    switch (event.key) {
+      case "ArrowRight":
+        nextIndex = (index + 1) % total;
+        break;
+      case "ArrowLeft":
+        nextIndex = (index - 1 + total) % total;
+        break;
+      case "Home":
+        nextIndex = 0;
+        break;
+      case "End":
+        nextIndex = total - 1;
+        break;
+      default:
+        return;
+    }
+
+    event.preventDefault();
+    setActiveIndex(nextIndex);
+    tabRefs.current[nextIndex]?.focus();
   };
 
   return (
@@ -156,14 +185,19 @@ function VocabularyCardDeck() {
           <button
             key={v.term}
             type="button"
+            ref={(element) => {
+              tabRefs.current[i] = element;
+            }}
             role="tab"
             aria-selected={activeIndex === i}
+            tabIndex={activeIndex === i ? 0 : -1}
             aria-controls="vocab-card"
             id={`vocab-tab-${i}`}
             onClick={() => setActiveIndex(i)}
+            onKeyDown={(event) => selectTabFromKeyboard(event, i)}
             className={`px-3 py-1.5 rounded-full font-mono text-[12px] tracking-wider transition ${
               activeIndex === i
-                ? "bg-[var(--d-teal)] text-white"
+                ? "bg-[var(--d-teal-action)] text-white"
                 : "bg-[var(--d-card)] text-[var(--d-slate)] border border-[var(--d-line)] hover:border-[var(--d-teal)] hover:text-[var(--d-ink)]"
             }`}
           >
@@ -177,10 +211,9 @@ function VocabularyCardDeck() {
         id="vocab-card"
         role="tabpanel"
         aria-labelledby={`vocab-tab-${activeIndex}`}
-        aria-live="polite"
         className="relative min-h-[220px] rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between transition-all duration-300"
       >
-        <div>
+        <div aria-live="polite" aria-atomic="true">
           <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--d-coral-ink)]">
             Term {activeIndex + 1} of {total}
           </span>
@@ -194,7 +227,7 @@ function VocabularyCardDeck() {
 
         {/* Responsive Controls Wrapper */}
         <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-between sm:gap-2">
-          <div className="flex items-center gap-3 w-full justify-between sm:w-auto">
+          <div className="flex flex-wrap items-center gap-3 w-full justify-between sm:w-auto">
             <button
               type="button"
               onClick={prev}
@@ -246,7 +279,7 @@ export default function Landing() {
     >
       <a
         href="#build"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-[var(--d-teal)] focus:px-4 focus:py-2 focus:text-white"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-[var(--d-teal-action)] focus:px-4 focus:py-2 focus:text-white"
       >
         Skip to the build
       </a>
@@ -343,7 +376,7 @@ export default function Landing() {
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a
                   href="#hosts"
-                  className="inline-flex items-center gap-2 rounded-full bg-[var(--d-teal)] px-7 py-3 text-base font-medium text-white shadow-sm transition hover:bg-[var(--d-teal-dark)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d-amber)]"
+                  className="inline-flex items-center gap-2 rounded-full bg-[var(--d-teal-action)] px-7 py-3 text-base font-medium text-white shadow-sm transition hover:bg-[var(--d-teal-dark)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d-amber)]"
                 >
                   Meet your hosts
                   <ArrowDown className="size-4" aria-hidden="true" />
@@ -380,8 +413,12 @@ export default function Landing() {
             <div className="mt-12 grid gap-x-16 gap-y-14 lg:grid-cols-2">
               <article className="border-t border-[var(--d-line)] pt-8 flex flex-col sm:flex-row gap-6 items-start">
                 <img
-                  src="https://images.lumacdn.com/uploads/5f/824b0594-ac39-4636-aa28-f683a498e26a.png"
+                  src="/images/jeff-kazzee.webp"
                   alt="Jeff Kazzee"
+                  width={160}
+                  height={160}
+                  loading="lazy"
+                  decoding="async"
                   className="size-20 rounded-full object-cover border border-[var(--d-line)] shadow-sm shrink-0"
                 />
                 <div>
@@ -402,7 +439,7 @@ export default function Landing() {
                       href="https://jeffkazzee.zo.space/work-with-me"
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-full bg-[var(--d-teal)] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[var(--d-teal-dark)]"
+                      className="rounded-full bg-[var(--d-teal-action)] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[var(--d-teal-dark)]"
                     >
                       Book a 1:1 with Jeff
                     </a>
@@ -419,8 +456,12 @@ export default function Landing() {
               </article>
               <article className="border-t border-[var(--d-line)] pt-8 flex flex-col sm:flex-row gap-6 items-start">
                 <img
-                  src="https://images.lumacdn.com/avatars/eh/b4b63086-7ee6-44ae-85de-5b898cdc0055.jpg"
+                  src="/images/ethan-davidson.webp"
                   alt="Ethan Davidson"
+                  width={160}
+                  height={160}
+                  loading="lazy"
+                  decoding="async"
                   className="size-20 rounded-full object-cover border border-[var(--d-line)] shadow-sm shrink-0"
                 />
                 <div>
@@ -440,7 +481,7 @@ export default function Landing() {
                       href="https://wazoo.dev"
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-full bg-[var(--d-coral)] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[var(--d-coral-ink)]"
+                      className="rounded-full bg-[var(--d-coral-action)] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[var(--d-coral-action-hover)]"
                     >
                       Sign up for Wazoo
                     </a>
@@ -556,8 +597,12 @@ export default function Landing() {
               <div className="space-y-4">
                 <figure className="relative">
                   <img
-                    src="/images/joannas_second_brain.png"
+                    src="/images/joannas-second-brain.webp"
                     alt="Mockup of Joanna's second brain workspace in Zo, showing files like USER.md and AGENTS.md."
+                    width={768}
+                    height={768}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full rounded-2xl border border-[var(--d-line)] shadow-[0_24px_80px_rgba(0,0,0,0.12)]"
                   />
                   <figcaption className="mt-3 text-center font-mono text-[11px] text-[var(--d-slate)]">
@@ -594,44 +639,29 @@ export default function Landing() {
               <h3 className="mt-3 font-serif text-2xl font-semibold tracking-tight sm:text-3xl">
                 Why do you want a second brain?
               </h3>
-              <div className="mt-8 grid gap-6 sm:grid-cols-3">
-                <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
-                  <span className="text-3xl" role="img" aria-label="brain">
-                    🧠
-                  </span>
-                  <h4 className="mt-4 font-serif text-lg font-semibold">
+              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                <div className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-5 shadow-sm">
+                  <h4 className="font-serif text-lg font-semibold">
                     Remember for you
                   </h4>
                   <p className="mt-2 text-sm leading-6 text-[var(--d-slate)]">
-                    Save your projects, client notes, and plans in one place.
-                    Offload the mental overhead of tracking a million details.
+                    Remember projects, people, and plans.
                   </p>
                 </div>
-                <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm border-l-4 border-l-[var(--d-teal)]">
-                  <span className="text-3xl" role="img" aria-label="user">
-                    👤
-                  </span>
-                  <h4 className="mt-4 font-serif text-lg font-semibold">
+                <div className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-5 shadow-sm">
+                  <h4 className="font-serif text-lg font-semibold">
                     Work like you
                   </h4>
                   <p className="mt-2 text-sm leading-6 text-[var(--d-slate)]">
-                    Your AI reads{" "}
-                    <code className="font-mono text-[11px]">USER.md</code> and{" "}
-                    <code className="font-mono text-[11px]">WORK.md</code>{" "}
-                    before drafting messages, acting with your exact voice and
-                    standards.
+                    Write in your voice and standards.
                   </p>
                 </div>
-                <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
-                  <span className="text-3xl" role="img" aria-label="lightning">
-                    ⚡
-                  </span>
-                  <h4 className="mt-4 font-serif text-lg font-semibold">
+                <div className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-5 shadow-sm">
+                  <h4 className="font-serif text-lg font-semibold">
                     Work while you sleep
                   </h4>
                   <p className="mt-2 text-sm leading-6 text-[var(--d-slate)]">
-                    Codify background rules and schedule maintenance loops to
-                    clean stale files and run automation tasks overnight.
+                    Run maintenance and automation overnight.
                   </p>
                 </div>
               </div>
@@ -744,7 +774,7 @@ export default function Landing() {
                       href="https://zo-computer.cello.so/X9jcdFXqh9Z"
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-full border-2 border-[var(--d-teal)] px-5 py-2.5 text-sm font-medium text-[var(--d-teal-ink)] transition hover:bg-[var(--d-teal)] hover:text-white"
+                      className="rounded-full border-2 border-[var(--d-teal)] px-5 py-2.5 text-sm font-medium text-[var(--d-teal-ink)] transition hover:bg-[var(--d-teal-action)] hover:text-white"
                     >
                       Sign up via Jeff
                     </a>
@@ -752,7 +782,7 @@ export default function Landing() {
                       href="https://etok.me/zo"
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-full border-2 border-[var(--d-coral)] px-5 py-2.5 text-sm font-medium text-[var(--d-coral-ink)] transition hover:bg-[var(--d-coral)] hover:text-white"
+                      className="rounded-full border-2 border-[var(--d-coral)] px-5 py-2.5 text-sm font-medium text-[var(--d-coral-ink)] transition hover:bg-[var(--d-coral-action)] hover:text-white"
                     >
                       Sign up via Ethan
                     </a>

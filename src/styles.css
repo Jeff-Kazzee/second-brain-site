@@ -58,6 +58,9 @@
   --d-teal-ink: #0a5d65;
   --d-coral: #e76f51;
   --d-coral-ink: #c14f33;
+  --d-teal-action: #0e7c86;
+  --d-coral-action: #c14f33;
+  --d-coral-action-hover: #9f3f28;
   --d-amber: #f4a261;
   --d-slate: #5c5b58;
   --d-line: #e2ddd3;
@@ -91,6 +94,9 @@
   --d-teal-ink: #8fd0d6;
   --d-coral: #f08d6e;
   --d-coral-ink: #f4a58c;
+  --d-teal-action: #0f6b74;
+  --d-coral-action: #a63d25;
+  --d-coral-action-hover: #8f351f;
   --d-amber: #f4b273;
   --d-slate: #aaa49a;
   --d-line: #33312c;

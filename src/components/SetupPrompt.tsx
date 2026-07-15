@@ -24,7 +24,7 @@ export default function SetupPrompt() {
         <button
           type="button"
           onClick={copy}
-          className="rounded-full bg-[var(--d-teal)] px-5 py-2 text-sm font-medium text-white transition hover:bg-[var(--d-teal-dark)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d-amber)]"
+          className="rounded-full bg-[var(--d-teal-action)] px-5 py-2 text-sm font-medium text-white transition hover:bg-[var(--d-teal-dark)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d-amber)]"
         >
           {copied ? "Copied" : "Copy the setup prompt"}
         </button>
