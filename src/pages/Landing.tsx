@@ -88,13 +88,13 @@ const maintenanceLoop = `## Brain Maintenance
 4. Update \`STATE.md\` only if current truth actually changed.
 5. Verify the touched links/files and log a concise receipt.`;
 
-const interviewPrompt = `### 1. Interview
+const interviewPrompt = `### Interview
 Help me build a small second brain for the part of my life or work I describe. Ask me, one at a time: what I want to organize first; what I'm working on; who matters; what safe source material I already have; and what you may do versus what needs my approval — do not create any files yet.
 
-### 2. Plan
+### Plan
 Based on my answers, propose the smallest useful second-brain structure. List each file or folder, what it is for, and any assumptions or unknowns; wait for my explicit approval before creating or changing anything.
 
-### 3. Build
+### Build
 Approved — create only the plan we agreed on. When you finish, show me where my current work, people, sources, and next update live; do not send, publish, import private material, or change anything outside this workspace without asking.`;
 
 function CopyChip({ text, label }: { text: string; label: string }) {
