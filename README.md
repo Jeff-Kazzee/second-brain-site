@@ -4,6 +4,8 @@ An accessible, single-page workshop companion for the Build Your Second Brain ev
 
 Live site: [second-brain-jeffkazzee.zocomputer.io](https://second-brain-jeffkazzee.zocomputer.io)
 
+Source: [github.com/Jeff-Kazzee/second-brain-site](https://github.com/Jeff-Kazzee/second-brain-site)
+
 ## Stack
 
 - Bun and Hono serve the app.
@@ -25,7 +27,7 @@ Live site: [second-brain-jeffkazzee.zocomputer.io](https://second-brain-jeffkazz
 - Consultation calls point to `https://jeffkazzee.zo.space/work-with-me` and use the verified $40 half-hour offer.
 - Ethan Davidson's current link is `https://www.linkedin.com/in/etok/`.
 - The Vite development handler in `server.ts` preserves query strings so raw imports such as `?raw` work correctly.
-- The site is prepared for a public Zo Site release and a standalone public GitHub repository. Publishing and outreach still require explicit approval for each release.
+- Published publicly as a Zo Site on 2026-07-15. The source is maintained in a standalone public GitHub repository so unrelated workspace history and files cannot enter the release.
 
 ## Commands
 
