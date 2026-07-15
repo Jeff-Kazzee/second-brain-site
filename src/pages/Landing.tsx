@@ -583,7 +583,7 @@ export default function Landing() {
                 Why do you want a second brain?
               </h3>
               <div className="mt-8 grid gap-6 sm:grid-cols-3">
-                <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
+                <div className="rounded-none border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
                   <span className="text-3xl" role="img" aria-label="brain">
                     🧠
                   </span>
@@ -595,7 +595,7 @@ export default function Landing() {
                     Offload the mental overhead of tracking a million details.
                   </p>
                 </div>
-                <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm border-l-4 border-l-[var(--d-teal)]">
+                <div className="rounded-none border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm border-l-4 border-l-[var(--d-teal)]">
                   <span className="text-3xl" role="img" aria-label="user">
                     👤
                   </span>
@@ -610,7 +610,7 @@ export default function Landing() {
                     standards.
                   </p>
                 </div>
-                <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
+                <div className="rounded-none border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
                   <span className="text-3xl" role="img" aria-label="lightning">
                     ⚡
                   </span>
