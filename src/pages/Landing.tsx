@@ -481,6 +481,9 @@ export default function Landing() {
                 <pre className="mt-4 overflow-x-hidden whitespace-pre-wrap break-words rounded-2xl border border-[var(--d-line)] bg-[var(--d-terminal)] p-5 font-mono text-[12.5px] leading-6 text-[var(--d-terminal-text)]">
                   <PromptCode text={maintenanceLoop} />
                 </pre>
+                <div className="mt-4">
+                  <CopyChip text={maintenanceLoop} label="Copy the maintenance loop" />
+                </div>
               </div>
               <div>
                 <h3 className="font-serif text-xl font-semibold">Prefer to be interviewed?</h3>
