@@ -380,7 +380,7 @@ export default function Landing() {
             <div className="mt-12 grid gap-x-16 gap-y-14 lg:grid-cols-2">
               <article className="border-t border-[var(--d-line)] pt-8 flex flex-col sm:flex-row gap-6 items-start">
                 <img
-                  src="https://images.lumacdn.com/uploads/5f/824b0594-ac39-4636-aa28-f683a498e26a.png"
+                  src="/images/jeff.jpg"
                   alt="Jeff Kazzee"
                   className="size-20 rounded-full object-cover border border-[var(--d-line)] shadow-sm shrink-0"
                 />
@@ -419,7 +419,7 @@ export default function Landing() {
               </article>
               <article className="border-t border-[var(--d-line)] pt-8 flex flex-col sm:flex-row gap-6 items-start">
                 <img
-                  src="https://images.lumacdn.com/avatars/eh/b4b63086-7ee6-44ae-85de-5b898cdc0055.jpg"
+                  src="/images/ethan.jpg"
                   alt="Ethan Davidson"
                   className="size-20 rounded-full object-cover border border-[var(--d-line)] shadow-sm shrink-0"
                 />
@@ -556,8 +556,9 @@ export default function Landing() {
               <div className="space-y-4">
                 <figure className="relative">
                   <img
-                    src="/images/joannas_second_brain.png"
+                    src="/images/joannas_second_brain.jpg"
                     alt="Mockup of Joanna's second brain workspace in Zo, showing files like USER.md and AGENTS.md."
+                    loading="lazy"
                     className="w-full rounded-2xl border border-[var(--d-line)] shadow-[0_24px_80px_rgba(0,0,0,0.12)]"
                   />
                   <figcaption className="mt-3 text-center font-mono text-[11px] text-[var(--d-slate)]">
