@@ -147,11 +147,19 @@ function VocabularyCardDeck() {
   return (
     <div className="mt-10 space-y-6">
       {/* Term Navigator */}
-      <div className="flex flex-wrap gap-2 justify-center pb-4 border-b border-[var(--d-line)]">
+      <div
+        role="tablist"
+        aria-label="Vocabulary terms"
+        className="flex flex-wrap gap-2 justify-center pb-4 border-b border-[var(--d-line)]"
+      >
         {vocab.map((v, i) => (
           <button
             key={v.term}
             type="button"
+            role="tab"
+            aria-selected={activeIndex === i}
+            aria-controls="vocab-card"
+            id={`vocab-tab-${i}`}
             onClick={() => setActiveIndex(i)}
             className={`px-3 py-1.5 rounded-full font-mono text-[12px] tracking-wider transition ${
               activeIndex === i
@@ -165,7 +173,13 @@ function VocabularyCardDeck() {
       </div>
 
       {/* The Active Card (Shows one word at a time) */}
-      <div className="relative min-h-[220px] rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between transition-all duration-300">
+      <div
+        id="vocab-card"
+        role="tabpanel"
+        aria-labelledby={`vocab-tab-${activeIndex}`}
+        aria-live="polite"
+        className="relative min-h-[220px] rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between transition-all duration-300"
+      >
         <div>
           <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--d-coral-ink)]">
             Term {activeIndex + 1} of {total}
@@ -178,17 +192,27 @@ function VocabularyCardDeck() {
           </p>
         </div>
 
-        <div className="mt-8 flex items-center justify-between">
-          <button
-            type="button"
-            onClick={prev}
-            className="px-4 py-2 rounded-full border border-[var(--d-line)] bg-[var(--d-canvas)] font-mono text-[12px] text-[var(--d-slate)] hover:text-[var(--d-ink)] hover:border-[var(--d-teal)] transition"
-          >
-            ← Previous
-          </button>
+        {/* Responsive Controls Wrapper */}
+        <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-between sm:gap-2">
+          <div className="flex items-center gap-3 w-full justify-between sm:w-auto">
+            <button
+              type="button"
+              onClick={prev}
+              className="px-4 py-2 rounded-full border border-[var(--d-line)] bg-[var(--d-canvas)] font-mono text-[12px] text-[var(--d-slate)] hover:text-[var(--d-ink)] hover:border-[var(--d-teal)] transition"
+            >
+              ← Previous
+            </button>
+            <button
+              type="button"
+              onClick={next}
+              className="px-4 py-2 rounded-full border border-[var(--d-line)] bg-[var(--d-canvas)] font-mono text-[12px] text-[var(--d-slate)] hover:text-[var(--d-ink)] hover:border-[var(--d-teal)] transition sm:hidden"
+            >
+              Next →
+            </button>
+          </div>
 
           {/* Progress dots */}
-          <div className="flex gap-1.5">
+          <div className="flex flex-wrap gap-1.5 justify-center py-2">
             {vocab.map((_, i) => (
               <span
                 key={i}
@@ -204,7 +228,7 @@ function VocabularyCardDeck() {
           <button
             type="button"
             onClick={next}
-            className="px-4 py-2 rounded-full border border-[var(--d-line)] bg-[var(--d-canvas)] font-mono text-[12px] text-[var(--d-slate)] hover:text-[var(--d-ink)] hover:border-[var(--d-teal)] transition"
+            className="hidden sm:inline-flex px-4 py-2 rounded-full border border-[var(--d-line)] bg-[var(--d-canvas)] font-mono text-[12px] text-[var(--d-slate)] hover:text-[var(--d-ink)] hover:border-[var(--d-teal)] transition"
           >
             Next →
           </button>
@@ -443,7 +467,7 @@ export default function Landing() {
           <div className="mx-auto max-w-3xl px-5 py-24 sm:px-8 sm:py-32">
             {/* Ground Rules */}
             <div className="space-y-6">
-              <SectionKicker>First things first · 6 mins</SectionKicker>
+              <SectionKicker>First things first · 5 mins</SectionKicker>
               <h2 className="font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
                 Ground Rules &amp; Questions Protocol
               </h2>
@@ -622,7 +646,7 @@ export default function Landing() {
           className="border-b border-[var(--d-line)] bg-[var(--d-teal-panel)]"
         >
           <div className="mx-auto max-w-5xl px-5 py-24 sm:px-8 sm:py-32">
-            <SectionKicker>Shared vocabulary · Q1 · 15 mins</SectionKicker>
+            <SectionKicker>Shared vocabulary · Q1 · 10 mins</SectionKicker>
             <h2
               id="words-h"
               className="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl text-balance"
@@ -694,7 +718,7 @@ export default function Landing() {
           className="border-b border-[var(--d-line)]"
         >
           <div className="mx-auto max-w-5xl px-5 py-24 sm:px-8 sm:py-32">
-            <SectionKicker>The build · Q2 · 20 mins</SectionKicker>
+            <SectionKicker>The build · Q2 · 25 mins</SectionKicker>
             <h2
               id="build-h"
               className="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl text-balance"
@@ -803,7 +827,7 @@ export default function Landing() {
           className="border-b border-[var(--d-line)] bg-[var(--d-teal-panel)]"
         >
           <div className="mx-auto max-w-5xl px-5 py-24 sm:px-8 sm:py-32">
-            <SectionKicker>The deeper dive · Q3 · 20 mins</SectionKicker>
+            <SectionKicker>The deeper dive · Q3 · 15 mins</SectionKicker>
             <h2
               id="deeper-h"
               className="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl text-balance"
@@ -965,7 +989,7 @@ export default function Landing() {
           className="border-b border-[var(--d-line)] bg-[var(--d-teal-panel)]"
         >
           <div className="mx-auto max-w-3xl px-5 py-20 text-center sm:px-8">
-            <SectionKicker>Summary</SectionKicker>
+            <SectionKicker>Summary · 5 mins</SectionKicker>
             <h2 className="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
               What we accomplished today
             </h2>
