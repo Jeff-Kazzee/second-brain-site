@@ -17,7 +17,10 @@ function highlightInline(text: string, keyBase: string): ReactNode[] {
       );
     } else if (tok.startsWith("**")) {
       out.push(
-        <span key={`${keyBase}-b${i}`} className="font-semibold text-[var(--code-bold)]">
+        <span
+          key={`${keyBase}-b${i}`}
+          className="font-semibold text-[var(--code-bold)]"
+        >
           {tok}
         </span>,
       );
@@ -42,13 +45,19 @@ export default function PromptCode({ text }: { text: string }) {
       {lines.map((line, idx) => {
         let content: ReactNode;
         if (/^#{1,6}\s/.test(line)) {
-          content = <span className="font-semibold text-[var(--code-heading)]">{line}</span>;
+          content = (
+            <span className="font-semibold text-[var(--code-heading)]">
+              {line}
+            </span>
+          );
         } else {
           const listMatch = line.match(/^(\s*(?:[-*]|\d+\.)\s)(.*)$/);
           if (listMatch) {
             content = (
               <>
-                <span className="text-[var(--code-marker)]">{listMatch[1]}</span>
+                <span className="text-[var(--code-marker)]">
+                  {listMatch[1]}
+                </span>
                 {highlightInline(listMatch[2], `l${idx}`)}
               </>
             );

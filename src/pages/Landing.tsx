@@ -147,23 +147,16 @@ function VocabularyCardDeck() {
   return (
     <div className="mt-10 space-y-6">
       {/* Term Navigator */}
-      <div
-        role="tablist"
-        aria-label="Vocabulary terms"
-        className="flex flex-wrap gap-2 justify-center pb-4 border-b border-[var(--d-line)]"
-      >
+      <div className="flex flex-wrap gap-2 justify-center pb-4 border-b border-[var(--d-line)]">
         {vocab.map((v, i) => (
           <button
             key={v.term}
             type="button"
-            role="tab"
-            aria-selected={activeIndex === i}
-            aria-controls="vocab-card"
-            id={`vocab-tab-${i}`}
+            aria-pressed={activeIndex === i}
             onClick={() => setActiveIndex(i)}
             className={`px-3 py-1.5 rounded-full font-mono text-[12px] tracking-wider transition ${
               activeIndex === i
-                ? "bg-[var(--d-teal)] text-white"
+                ? "bg-[var(--d-teal)] text-white dark:text-[#171614]"
                 : "bg-[var(--d-card)] text-[var(--d-slate)] border border-[var(--d-line)] hover:border-[var(--d-teal)] hover:text-[var(--d-ink)]"
             }`}
           >
@@ -173,14 +166,8 @@ function VocabularyCardDeck() {
       </div>
 
       {/* The Active Card (Shows one word at a time) */}
-      <div
-        id="vocab-card"
-        role="tabpanel"
-        aria-labelledby={`vocab-tab-${activeIndex}`}
-        aria-live="polite"
-        className="relative min-h-[220px] rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between transition-all duration-300"
-      >
-        <div>
+      <div className="relative min-h-[220px] rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between transition-all duration-300">
+        <div aria-live="polite" aria-atomic="true">
           <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--d-coral-ink)]">
             Term {activeIndex + 1} of {total}
           </span>
@@ -246,7 +233,7 @@ export default function Landing() {
     >
       <a
         href="#build"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-[var(--d-teal)] focus:px-4 focus:py-2 focus:text-white"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-[var(--d-teal)] focus:px-4 focus:py-2 focus:text-white dark:focus:text-[#171614]"
       >
         Skip to the build
       </a>
@@ -343,7 +330,7 @@ export default function Landing() {
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a
                   href="#hosts"
-                  className="inline-flex items-center gap-2 rounded-full bg-[var(--d-teal)] px-7 py-3 text-base font-medium text-white shadow-sm transition hover:bg-[var(--d-teal-dark)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d-amber)]"
+                  className="inline-flex items-center gap-2 rounded-full bg-[var(--d-teal)] px-7 py-3 text-base font-medium text-white dark:text-[#171614] shadow-sm transition hover:bg-[var(--d-teal-dark)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d-amber)]"
                 >
                   Meet your hosts
                   <ArrowDown className="size-4" aria-hidden="true" />
@@ -402,7 +389,7 @@ export default function Landing() {
                       href="https://jeffkazzee.zo.space/work-with-me"
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-full bg-[var(--d-teal)] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[var(--d-teal-dark)]"
+                      className="rounded-full bg-[var(--d-teal)] px-5 py-2.5 text-sm font-medium text-white dark:text-[#171614] transition hover:bg-[var(--d-teal-dark)]"
                     >
                       Book a 1:1 with Jeff
                     </a>
@@ -440,7 +427,7 @@ export default function Landing() {
                       href="https://wazoo.dev"
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-full bg-[var(--d-coral)] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[var(--d-coral-ink)]"
+                      className="rounded-full bg-[var(--d-coral)] px-5 py-2.5 text-sm font-medium text-[#171614] transition hover:bg-[var(--d-coral-ink)]"
                     >
                       Sign up for Wazoo
                     </a>
@@ -745,7 +732,7 @@ export default function Landing() {
                       href="https://zo-computer.cello.so/X9jcdFXqh9Z"
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-full border-2 border-[var(--d-teal)] px-5 py-2.5 text-sm font-medium text-[var(--d-teal-ink)] transition hover:bg-[var(--d-teal)] hover:text-white"
+                      className="rounded-full border-2 border-[var(--d-teal)] px-5 py-2.5 text-sm font-medium text-[var(--d-teal-ink)] transition hover:bg-[var(--d-teal)] hover:text-white dark:hover:text-[#171614]"
                     >
                       Sign up via Jeff
                     </a>
@@ -753,7 +740,7 @@ export default function Landing() {
                       href="https://etok.me/zo"
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-full border-2 border-[var(--d-coral)] px-5 py-2.5 text-sm font-medium text-[var(--d-coral-ink)] transition hover:bg-[var(--d-coral)] hover:text-white"
+                      className="rounded-full border-2 border-[var(--d-coral)] px-5 py-2.5 text-sm font-medium text-[var(--d-coral-ink)] transition hover:bg-[var(--d-coral)] hover:text-[#171614]"
                     >
                       Sign up via Ethan
                     </a>

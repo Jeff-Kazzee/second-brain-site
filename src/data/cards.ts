@@ -56,13 +56,13 @@ export const slides: Slide[] = [
     body: "One folder. Five plain answers. Zo reads them and proposes a file structure sized to your real life, not somebody else's template. You approve the plan. If you get stuck, start with four files. That still counts as a win.",
     pull: "Small is correct.",
     image: "/images/recut-06-smallest-build.png",
-    imageAlt:
-      "One folder holding five small files, with a checkmark above it.",
+    imageAlt: "One folder holding five small files, with a checkmark above it.",
   },
   {
     n: "06",
     kicker: "Keep control, then keep it alive",
-    headline: "Make it ask before important changes. Then add one line tomorrow.",
+    headline:
+      "Make it ask before important changes. Then add one line tomorrow.",
     body: "Useful AI is supervised AI. Replacing a trusted note, sending a message, and publishing something should all require approval. After tonight, maintenance stays small: add one source, update one note, close one task, write one log line.",
     pull: "More context. More control. Small upkeep.",
     image: "/images/recut-04-supervised-machine.png",

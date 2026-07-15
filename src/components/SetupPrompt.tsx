@@ -24,7 +24,7 @@ export default function SetupPrompt() {
         <button
           type="button"
           onClick={copy}
-          className="rounded-full bg-[var(--d-teal)] px-5 py-2 text-sm font-medium text-white transition hover:bg-[var(--d-teal-dark)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d-amber)]"
+          className="rounded-full bg-[var(--d-teal)] px-5 py-2 text-sm font-medium text-white dark:text-[#171614] transition hover:bg-[var(--d-teal-dark)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d-amber)]"
         >
           {copied ? "Copied" : "Copy the setup prompt"}
         </button>
@@ -36,8 +36,8 @@ export default function SetupPrompt() {
         <PromptCode text={promptText} />
       </pre>
       <p className="border-t border-white/10 px-5 py-4 font-mono text-[12px] leading-5 text-[#b8b4a8] sm:px-7">
-        Works in Zo Computer. Your AI reads it, asks the five questions, and waits for your approval
-        before it touches anything.
+        Works in Zo Computer. Your AI reads it, asks the five questions, and
+        waits for your approval before it touches anything.
       </p>
     </div>
   );
