@@ -74,44 +74,7 @@ const deeperVocab = [
   },
 ];
 
-const agenda = [
-  {
-    q: "Q1",
-    time: "0:00 – 0:25",
-    title: "Fundamentals",
-    body: "What a second brain is and why your AI gets smart when it can read your notes. Shared vocabulary so we all use the same words.",
-  },
-  {
-    q: "Q2",
-    time: "0:25 – 0:55",
-    title: "Hands-on build",
-    body: "Build your first second brain from scratch, live. Add your context, paste the prompt, watch five files appear.",
-  },
-  {
-    q: "Half time",
-    time: "0:55 – 1:05",
-    title: "Questions",
-    body: "Raise your hand to go off mute. Questions wait for these pauses so the build stays on track.",
-  },
-  {
-    q: "Q3",
-    time: "1:05 – 1:30",
-    title: "Deeper dive",
-    body: "Keeping the system alive instead of stale: maintenance loops, gates, and brains that update themselves while you sleep.",
-  },
-  {
-    q: "Q4",
-    time: "1:30 – 1:50",
-    title: "Show and tell",
-    body: "Two or three volunteers demo their setups, a few minutes each. Closing questions run to the top of the hour.",
-  },
-  {
-    q: "After",
-    time: "1:50 – 2:00+",
-    title: "Overtime",
-    body: "Buffer for whatever ran long, plus open questions and networking. Nobody gets cut off mid-thought.",
-  },
-];
+
 
 
 const maintenanceLoop = `## Brain Maintenance
@@ -270,7 +233,7 @@ export default function Landing() {
           </a>
           <nav aria-label="Sections" className="hidden items-center gap-6 font-mono text-[12px] uppercase tracking-[0.14em] text-[var(--d-slate)] md:flex">
             <a href="#hosts" className="transition hover:text-[var(--d-teal-ink)]">Hosts</a>
-            <a href="#rules" className="transition hover:text-[var(--d-teal-ink)]">Rules &amp; Agenda</a>
+            <a href="#rules" className="transition hover:text-[var(--d-teal-ink)]">Rules</a>
             <a href="#why" className="transition hover:text-[var(--d-teal-ink)]">Why</a>
             <a href="#words" className="transition hover:text-[var(--d-teal-ink)]">Words</a>
             <a href="#build" className="transition hover:text-[var(--d-teal-ink)]">Build</a>
@@ -396,73 +359,45 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* Section 1: Ground Rules & Agenda (Tell them what we're gonna tell them) */}
+        {/* Section 1: Ground Rules (Tell them what we're gonna tell them) */}
         <section id="rules" className="border-b border-[var(--d-line)] bg-[var(--d-teal-panel)]">
-          <div className="mx-auto max-w-5xl px-5 py-24 sm:px-8 sm:py-32">
-            <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr]">
-              {/* Ground Rules */}
-              <div className="space-y-6">
-                <SectionKicker>First things first · 6 mins</SectionKicker>
-                <h2 className="font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
-                  Ground Rules &amp; Questions Protocol
-                </h2>
-                <div className="space-y-5 text-[16px] leading-7 text-[var(--d-slate)]">
-                  <p>
-                    To keep the workshop running smoothly and make sure everyone builds their second brain, please follow our questions protocol:
-                  </p>
-                  <ul className="space-y-4">
-                    <li className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-4">
-                      <strong className="block font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--d-coral-ink)]">
-                        Wait for Designated Pauses
-                      </strong>
-                      <span className="mt-1 block text-sm">
-                        We have designated spots before the end of sections for you to ask questions. Please hold your questions for those pauses (like at Halftime and the end of Q4).
-                      </span>
-                    </li>
-                    <li className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-4">
-                      <strong className="block font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--d-teal-ink)]">
-                        Raise Your Hand
-                      </strong>
-                      <span className="mt-1 block text-sm">
-                        Raise your hand on Zo if you want to go off mute and ask a question aloud during our pauses.
-                      </span>
-                    </li>
-                    <li className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-4">
-                      <strong className="block font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--d-slate)]">
-                        Overtime &amp; Networking
-                      </strong>
-                      <span className="mt-1 block text-sm">
-                        The Zo team can jump in if we are losing track of time/pace. We will also stay after the 2-hour mark to answer any leftover questions and network.
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Agenda */}
-              <div className="space-y-6">
-                <SectionKicker>Overview</SectionKicker>
-                <h2 className="font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
-                  The Two-Hour Agenda
-                </h2>
-                <p className="text-[16px] leading-7 text-[var(--d-slate)]">
-                  Here is how we will progress through the presentation. We tell you what we're going to tell you, teach you, then wrap up with what we told you.
+          <div className="mx-auto max-w-3xl px-5 py-24 sm:px-8 sm:py-32">
+            {/* Ground Rules */}
+            <div className="space-y-6">
+              <SectionKicker>First things first · 6 mins</SectionKicker>
+              <h2 className="font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
+                Ground Rules &amp; Questions Protocol
+              </h2>
+              <div className="space-y-5 text-[16px] leading-7 text-[var(--d-slate)]">
+                <p>
+                  To keep the workshop running smoothly and make sure everyone builds their second brain, please follow our questions protocol:
                 </p>
-                <ol className="divide-y divide-[var(--d-line)] rounded-xl border border-[var(--d-line)] bg-[var(--d-card)]">
-                  {agenda.map((a) => (
-                    <li key={a.q} className="grid gap-2 p-4 sm:grid-cols-[80px_100px_1fr] sm:gap-4">
-                      <p className="font-mono text-[12px] font-medium text-[var(--d-coral-ink)]">{a.q}</p>
-                      <p className="font-mono text-[12px] text-[var(--d-slate)]">{a.time}</p>
-                      <div>
-                        <h3 className="font-serif text-base font-semibold">{a.title}</h3>
-                        <p className="mt-1 text-sm leading-6 text-[var(--d-slate)]">{a.body}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ol>
-                <p className="font-mono text-[11px] leading-5 text-[var(--d-slate)]">
-                  * Note: Times are estimates. Questions live in designated pauses after Q2 and Q4.
-                </p>
+                <ul className="space-y-4">
+                  <li className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-4 shadow-sm">
+                    <strong className="block font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--d-coral-ink)]">
+                      Wait for Designated Pauses
+                    </strong>
+                    <span className="mt-1 block text-sm">
+                      We have designated spots before the end of sections for you to ask questions. Please hold your questions for those pauses (like at Halftime and the end of Q4).
+                    </span>
+                  </li>
+                  <li className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-4 shadow-sm">
+                    <strong className="block font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--d-teal-ink)]">
+                      Raise Your Hand
+                    </strong>
+                    <span className="mt-1 block text-sm">
+                      Raise your hand on Zo if you want to go off mute and ask a question aloud during our pauses.
+                    </span>
+                  </li>
+                  <li className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-4 shadow-sm">
+                    <strong className="block font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--d-slate)]">
+                      Overtime &amp; Networking
+                    </strong>
+                    <span className="mt-1 block text-sm">
+                      The Zo team can jump in if we are losing track of time/pace. We will also stay after the 2-hour mark to answer any leftover questions and network.
+                    </span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
