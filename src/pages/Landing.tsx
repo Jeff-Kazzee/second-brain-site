@@ -511,38 +511,22 @@ export default function Landing() {
         {/* Section 2: What is a Second Brain? (Tell them) */}
         <section id="why" className="border-b border-[var(--d-line)]">
           <div className="mx-auto max-w-5xl px-5 py-24 sm:px-8 sm:py-32">
-            <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div className="grid gap-12 lg:items-start lg:grid-cols-[1.1fr_0.9fr]">
               <div className="space-y-6">
                 <SectionKicker>First principles · 10 mins</SectionKicker>
                 <h2 className="font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
                   What is a second brain?
                 </h2>
-                <div className="space-y-5 text-[17px] leading-8 text-[var(--d-slate)] text-pretty">
-                  <p>
-                    Everyone has a million things to keep track of. The main
-                    purpose of a second brain is to store all the knowledge,
-                    info, and preferences you want an AI to access for
-                    day-to-day work.
-                  </p>
-                  <p>
-                    <strong className="text-[var(--d-ink)]">
-                      Without a second brain, your AI restarts from zero every
-                      single conversation.
+                <div className="space-y-4 text-pretty">
+                  <p className="text-xl leading-8 text-[var(--d-slate)]">
+                    In Zo, your second brain is an{" "}
+                    <strong className="font-semibold text-[var(--d-ink)]">
+                      entire workspace folder of plain-text files
                     </strong>{" "}
-                    You are forced to repeat yourself and re-explain your work
-                    forever.
+                    that your AI reads dynamically.
                   </p>
-                  <p>
-                    A second brain is a productivity methodology (popularized by
-                    Tiago Forte) rather than a generic app label. It is like a
-                    paintbrush and canvas — Escher's two hands drawing each
-                    other. You write the notes, the notes make your AI sharper,
-                    and the sharper AI helps you write better notes.
-                  </p>
-                  <p>
-                    In Zo, your second brain is an entire workspace folder of
-                    plain-text files that your AI reads dynamically. Memory your
-                    AI can read.
+                  <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-[var(--d-teal-ink)]">
+                    Memory your AI can read
                   </p>
                 </div>
               </div>
