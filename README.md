@@ -29,7 +29,7 @@ Source: [github.com/Jeff-Kazzee/second-brain-site](https://github.com/Jeff-Kazze
 - Public copy teaches the method only. Private second-brain contents never enter the site.
 - Event registration points to `https://lu.ma/zo-3fd5`.
 - Consultation calls point to `https://jeffkazzee.zo.space/work-with-me` and use the verified $40 half-hour offer.
-- Ethan Davidson's current link is `https://www.linkedin.com/in/etok/`.
+- Ethan Davidson's current link is `https://etok.me` (his personal site; label reads "Ethan's site"). His workshop signup link is `etok.me/zo`.
 - The Vite development handler in `server.ts` preserves query strings so raw imports such as `?raw` work correctly.
 - Published publicly as a Zo Site on 2026-07-15. The source is maintained in a standalone public GitHub repository so unrelated workspace history and files cannot enter the release.
 

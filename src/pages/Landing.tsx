@@ -995,12 +995,12 @@ export default function Landing() {
                       Sign up for Wazoo
                     </a>
                     <a
-                      href="https://www.linkedin.com/in/etok/"
+                      href="https://etok.me"
                       target="_blank"
                       rel="noreferrer"
                       className="rounded-full border border-[var(--d-line)] px-4 py-2.5 text-center text-sm font-medium text-[var(--d-ink)] transition hover:border-[var(--d-coral)]"
                     >
-                      Ethan on LinkedIn
+                      Ethan's site
                     </a>
                   </div>
                 </div>
