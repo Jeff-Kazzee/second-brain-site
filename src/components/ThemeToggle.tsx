@@ -5,7 +5,9 @@ import { useTheme } from "@/components/theme-provider";
 function resolvedTheme(theme: string): "light" | "dark" {
   if (theme === "dark" || theme === "light") return theme;
   if (typeof window === "undefined") return "light";
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
 }
 
 export default function ThemeToggle() {

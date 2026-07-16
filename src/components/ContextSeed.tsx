@@ -83,11 +83,15 @@ export default function ContextSeed() {
       <div className="mt-5 grid gap-4 sm:grid-cols-2">
         {fields.map((f) => (
           <label key={f.key} className="block">
-            <span className="font-mono text-[12px] text-[var(--d-slate)]">{f.label}</span>
+            <span className="font-mono text-[12px] text-[var(--d-slate)]">
+              {f.label}
+            </span>
             <input
               type="text"
               value={values[f.key] ?? ""}
-              onChange={(e) => setValues((v) => ({ ...v, [f.key]: e.target.value }))}
+              onChange={(e) =>
+                setValues((v) => ({ ...v, [f.key]: e.target.value }))
+              }
               placeholder={f.placeholder}
               className="mt-1.5 w-full border-b border-[var(--d-line)] bg-transparent pb-2 text-[15px] text-[var(--d-ink)] placeholder:text-[var(--d-slate)]/50 focus:border-[var(--d-teal)] focus:outline-none"
             />
@@ -109,7 +113,9 @@ export default function ContextSeed() {
           {copied ? "Copied" : "Copy my context"}
         </button>
         <p className="font-mono text-[12px] text-[var(--d-slate)]">
-          {message ? "Paste it into Zo chat, then move to step 3." : "Fill in at least one field."}
+          {message
+            ? "Paste it into Zo chat, then move to step 3."
+            : "Fill in at least one field."}
         </p>
       </div>
       <p aria-live="polite" className="sr-only">
@@ -126,8 +132,8 @@ export default function ContextSeed() {
         </div>
       )}
       <p className="mt-3 max-w-2xl text-sm leading-6 text-[var(--d-slate)]">
-        Everything is optional and nothing leaves this page — the button just builds a message on
-        your clipboard.
+        Everything is optional and nothing leaves this page — the button just
+        builds a message on your clipboard.
       </p>
     </div>
   );
