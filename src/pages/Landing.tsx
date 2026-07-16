@@ -77,6 +77,25 @@ const deeperVocab = [
   },
 ];
 
+const benefits = [
+  {
+    term: "Instant Context",
+    plain: "Share your goals, projects, and standards once.",
+  },
+  {
+    term: "On-Brand Drafts",
+    plain: "Draft from your files, style, and preferences.",
+  },
+  {
+    term: "Approval Gates",
+    plain: "Pause sensitive actions for your approval.",
+  },
+  {
+    term: "Automatic Updates",
+    plain: "Keep links and indexes current as files change.",
+  },
+];
+
 const maintenanceLoop = `## Brain Maintenance
 
 **Purpose:** keep links, indexes, inbox routing, and current-truth surfaces healthy.
@@ -487,6 +506,271 @@ function DeeperConceptCarousel() {
           type="button"
           onClick={() => go(activeIndex + 1)}
           aria-label="Next concept"
+          className="rounded-full border border-[var(--d-line)] bg-[var(--d-canvas)] px-4 py-2 font-mono text-[12px] text-[var(--d-slate)] transition hover:border-[var(--d-teal)] hover:text-[var(--d-ink)]"
+        >
+          Next →
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function BenefitGraphic({ index }: { index: number }) {
+  const svgProps = {
+    viewBox: "0 0 120 120",
+    fill: "none",
+    "aria-hidden": true as const,
+  };
+
+  // 0 — Instant Context: a file feeds context straight into the AI node.
+  if (index === 0) {
+    return (
+      <svg {...svgProps} className="h-full w-full">
+        <rect
+          x="16"
+          y="34"
+          width="42"
+          height="52"
+          rx="6"
+          className="fill-[var(--d-canvas)] stroke-[var(--d-line)]"
+          strokeWidth="2"
+        />
+        {[47, 56, 65, 74].map((y, i) => (
+          <line
+            key={y}
+            x1="25"
+            y1={y}
+            x2={i === 0 ? 44 : i === 3 ? 40 : 49}
+            y2={y}
+            className={i === 0 ? "stroke-[var(--d-teal)]" : "stroke-[var(--d-slate)]"}
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            opacity={i === 0 ? "1" : "0.45"}
+          />
+        ))}
+        <line
+          x1="62"
+          y1="60"
+          x2="82"
+          y2="60"
+          className="stroke-[var(--d-teal)]"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+        <polyline
+          points="76,54 83,60 76,66"
+          className="fill-none stroke-[var(--d-teal)]"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <circle
+          cx="98"
+          cy="60"
+          r="15"
+          className="fill-[var(--d-teal-panel)] stroke-[var(--d-teal)]"
+          strokeWidth="2"
+        />
+        <circle cx="98" cy="60" r="4" className="fill-[var(--d-coral)]" />
+      </svg>
+    );
+  }
+
+  // 1 — On-Brand Drafts: a page written in your own voice, marked on-brand.
+  if (index === 1) {
+    return (
+      <svg {...svgProps} className="h-full w-full">
+        <rect
+          x="28"
+          y="18"
+          width="56"
+          height="84"
+          rx="6"
+          className="fill-[var(--d-canvas)] stroke-[var(--d-line)]"
+          strokeWidth="2"
+        />
+        {[32, 42, 52, 62].map((y, i) => (
+          <line
+            key={y}
+            x1="38"
+            y1={y}
+            x2={i % 2 === 0 ? 74 : 66}
+            y2={y}
+            className="stroke-[var(--d-slate)]"
+            strokeWidth="2"
+            strokeLinecap="round"
+            opacity="0.45"
+          />
+        ))}
+        <circle cx="42" cy="82" r="8" className="fill-[var(--d-teal-panel)] stroke-[var(--d-teal)]" strokeWidth="2" />
+        <polyline
+          points="38,82 41,85 46,79"
+          className="fill-none stroke-[var(--d-teal)]"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M78 40 L92 54 L74 72 L64 74 L66 64 Z"
+          className="fill-[var(--d-canvas)] stroke-[var(--d-coral)]"
+          strokeWidth="2.5"
+          strokeLinejoin="round"
+        />
+        <line
+          x1="82"
+          y1="44"
+          x2="88"
+          y2="50"
+          className="stroke-[var(--d-coral)]"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+      </svg>
+    );
+  }
+
+  // 2 — Approval Gates: a shield that holds until you check it off.
+  if (index === 2) {
+    return (
+      <svg {...svgProps} className="h-full w-full">
+        <path
+          d="M60 20 L88 30 V60 C88 78 74 92 60 100 C46 92 32 78 32 60 V30 Z"
+          className="fill-[var(--d-teal-panel)] stroke-[var(--d-teal)]"
+          strokeWidth="2.5"
+          strokeLinejoin="round"
+        />
+        <polyline
+          points="48,60 57,69 74,50"
+          className="fill-none stroke-[var(--d-teal)]"
+          strokeWidth="3.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    );
+  }
+
+  // 3 — Automatic Updates: a refresh cycle keeping a link intact.
+  return (
+    <svg
+      {...svgProps}
+      className="h-full w-full origin-center animate-spin [animation-duration:16s] motion-reduce:animate-none"
+    >
+      <path
+        d="M60 28 A32 32 0 0 1 92 60"
+        className="stroke-[var(--d-teal)]"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      <polyline
+        points="85,57 92,64 99,57"
+        className="fill-none stroke-[var(--d-teal)]"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M60 92 A32 32 0 0 1 28 60"
+        className="stroke-[var(--d-teal)]"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      <polyline
+        points="21,63 28,56 35,63"
+        className="fill-none stroke-[var(--d-teal)]"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <rect
+        x="52"
+        y="55"
+        width="16"
+        height="10"
+        rx="5"
+        className="fill-none stroke-[var(--d-coral)]"
+        strokeWidth="2.5"
+      />
+    </svg>
+  );
+}
+
+function BenefitsCarousel() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const total = benefits.length;
+  const go = (n: number) => setActiveIndex((n + total) % total);
+  const active = benefits[activeIndex];
+
+  return (
+    <div className="mt-8 space-y-6">
+      {/* Benefit navigator */}
+      <div className="flex flex-wrap justify-center gap-2 border-b border-[var(--d-line)] pb-4">
+        {benefits.map((b, i) => (
+          <button
+            key={b.term}
+            type="button"
+            aria-pressed={activeIndex === i}
+            onClick={() => setActiveIndex(i)}
+            className={`rounded-full px-3 py-1.5 font-mono text-[12px] tracking-wider transition ${
+              activeIndex === i
+                ? "bg-[var(--d-teal)] text-white dark:text-[#171614]"
+                : "border border-[var(--d-line)] bg-[var(--d-card)] text-[var(--d-slate)] hover:border-[var(--d-teal)] hover:text-[var(--d-ink)]"
+            }`}
+          >
+            {b.term}
+          </button>
+        ))}
+      </div>
+
+      {/* One benefit at a time */}
+      <div className="relative overflow-hidden rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] sm:min-h-[232px]">
+        <div
+          key={activeIndex}
+          aria-live="polite"
+          aria-atomic="true"
+          className="flex flex-col items-center gap-8 duration-500 animate-in fade-in slide-in-from-bottom-2 motion-reduce:animate-none sm:flex-row sm:items-center sm:gap-10"
+        >
+          <div className="flex size-32 shrink-0 items-center justify-center rounded-2xl border border-[var(--d-line)] bg-[var(--d-canvas)] p-6 sm:size-40">
+            <BenefitGraphic index={activeIndex} />
+          </div>
+          <div className="text-center sm:text-left">
+            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--d-coral-ink)]">
+              Outcome {activeIndex + 1} of {total}
+            </span>
+            <h3 className="mt-3 font-serif text-2xl font-semibold tracking-tight text-[var(--d-ink)] sm:text-3xl">
+              {active.term}
+            </h3>
+            <p className="mt-3 text-[17px] leading-8 text-[var(--d-slate)] text-pretty">
+              {active.plain}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Controls */}
+      <div className="flex items-center justify-between gap-4">
+        <button
+          type="button"
+          onClick={() => go(activeIndex - 1)}
+          aria-label="Previous outcome"
+          className="rounded-full border border-[var(--d-line)] bg-[var(--d-canvas)] px-4 py-2 font-mono text-[12px] text-[var(--d-slate)] transition hover:border-[var(--d-teal)] hover:text-[var(--d-ink)]"
+        >
+          ← Previous
+        </button>
+        <div className="flex gap-1.5">
+          {benefits.map((_, i) => (
+            <span
+              key={i}
+              className={`h-2 rounded-full transition-all ${
+                activeIndex === i ? "w-4 bg-[var(--d-teal)]" : "w-2 bg-[var(--d-line)]"
+              }`}
+            />
+          ))}
+        </div>
+        <button
+          type="button"
+          onClick={() => go(activeIndex + 1)}
+          aria-label="Next outcome"
           className="rounded-full border border-[var(--d-line)] bg-[var(--d-canvas)] px-4 py-2 font-mono text-[12px] text-[var(--d-slate)] transition hover:border-[var(--d-teal)] hover:text-[var(--d-ink)]"
         >
           Next →
@@ -1137,40 +1421,7 @@ export default function Landing() {
               A second brain extends your AI's power so you can work faster,
               remember everything, and automate your workflow.
             </p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-5 shadow-sm">
-                <h3 className="font-serif text-lg font-semibold text-[var(--d-ink)]">
-                  Instant Context
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-[var(--d-slate)]">
-                  Share your goals, projects, and standards once.
-                </p>
-              </div>
-              <div className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-5 shadow-sm">
-                <h3 className="font-serif text-lg font-semibold text-[var(--d-ink)]">
-                  On-Brand Drafts
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-[var(--d-slate)]">
-                  Draft from your files, style, and preferences.
-                </p>
-              </div>
-              <div className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-5 shadow-sm">
-                <h3 className="font-serif text-lg font-semibold text-[var(--d-ink)]">
-                  Approval Gates
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-[var(--d-slate)]">
-                  Pause sensitive actions for your approval.
-                </p>
-              </div>
-              <div className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-5 shadow-sm">
-                <h3 className="font-serif text-lg font-semibold text-[var(--d-ink)]">
-                  Automatic Updates
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-[var(--d-slate)]">
-                  Keep links and indexes current as files change.
-                </p>
-              </div>
-            </div>
+            <BenefitsCarousel />
           </div>
         </section>
 
