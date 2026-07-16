@@ -896,47 +896,37 @@ export default function Landing() {
               A second brain extends your AI's power so you can work faster,
               remember everything, and automate your workflow.
             </p>
-            <div className="mt-12 grid gap-8 sm:grid-cols-2">
-              <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
-                <h3 className="font-serif text-xl font-semibold text-[var(--d-ink)]">
-                  Zero-Setup Context
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-5 shadow-sm">
+                <h3 className="font-serif text-lg font-semibold text-[var(--d-ink)]">
+                  Instant Context
                 </h3>
-                <p className="mt-3 text-sm leading-6 text-[var(--d-slate)]">
-                  Instantly educate your AI on your specific business goals,
-                  projects, and standards in any chat session. No more repeating
-                  yourself.
+                <p className="mt-2 text-sm leading-6 text-[var(--d-slate)]">
+                  Share your goals, projects, and standards once.
                 </p>
               </div>
-              <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
-                <h3 className="font-serif text-xl font-semibold text-[var(--d-ink)]">
-                  Hallucination-Free Drafts
+              <div className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-5 shadow-sm">
+                <h3 className="font-serif text-lg font-semibold text-[var(--d-ink)]">
+                  On-Brand Drafts
                 </h3>
-                <p className="mt-3 text-sm leading-6 text-[var(--d-slate)]">
-                  The AI reads your local files to mirror your exact style and
-                  preferences, avoiding generic templates and empty
-                  placeholders.
+                <p className="mt-2 text-sm leading-6 text-[var(--d-slate)]">
+                  Draft from your files, style, and preferences.
                 </p>
               </div>
-              <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
-                <h3 className="font-serif text-xl font-semibold text-[var(--d-ink)]">
-                  Safe Automation Gates
+              <div className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-5 shadow-sm">
+                <h3 className="font-serif text-lg font-semibold text-[var(--d-ink)]">
+                  Approval Gates
                 </h3>
-                <p className="mt-3 text-sm leading-6 text-[var(--d-slate)]">
-                  Define approval gates in{" "}
-                  <code className="font-mono text-[12.5px] text-[var(--d-ink)]">
-                    AGENTS.md
-                  </code>{" "}
-                  so the AI drafts emails or inspects data, but always pauses
-                  for your final approval before executing.
+                <p className="mt-2 text-sm leading-6 text-[var(--d-slate)]">
+                  Pause sensitive actions for your approval.
                 </p>
               </div>
-              <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
-                <h3 className="font-serif text-xl font-semibold text-[var(--d-ink)]">
-                  Dynamic Auto-Updates
+              <div className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-5 shadow-sm">
+                <h3 className="font-serif text-lg font-semibold text-[var(--d-ink)]">
+                  Automatic Updates
                 </h3>
-                <p className="mt-3 text-sm leading-6 text-[var(--d-slate)]">
-                  Your AI's memory heals its own stale links and updates index
-                  maps automatically as you write notes and update folders.
+                <p className="mt-2 text-sm leading-6 text-[var(--d-slate)]">
+                  Keep links and indexes current as files change.
                 </p>
               </div>
             </div>
