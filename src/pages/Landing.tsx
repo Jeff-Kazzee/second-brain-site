@@ -547,21 +547,21 @@ export default function Landing() {
                 </div>
               </div>
 
-              {/* Joanna's Second Brain Visual */}
+              {/* Second Brain Infographic */}
               <div className="space-y-4">
                 <figure className="relative">
                   <img
-                    src="/images/joannas-second-brain.webp"
-                    alt="Mockup of Joanna's second brain workspace in Zo, showing files like USER.md and AGENTS.md."
-                    width={768}
-                    height={768}
+                    src="/images/second-brain-infographic.webp"
+                    alt="Infographic showing notes collected in an organized second brain, which an AI assistant reads to create a useful, personalized plan."
+                    width={1254}
+                    height={1254}
                     loading="lazy"
                     decoding="async"
                     className="w-full rounded-2xl border border-[var(--d-line)] shadow-[0_24px_80px_rgba(0,0,0,0.12)]"
                   />
                   <figcaption className="mt-3 text-center font-mono text-[11px] text-[var(--d-slate)]">
-                    Visual Example: Joanna's Second Brain workspace showing
-                    connected Markdown files.
+                    Notes become organized context your AI can turn into a
+                    useful plan.
                   </figcaption>
                 </figure>
                 <div className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-5 text-sm leading-6 text-[var(--d-slate)]">
