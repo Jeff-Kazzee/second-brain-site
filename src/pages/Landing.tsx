@@ -388,12 +388,12 @@ export default function Landing() {
                     brains — book a 1:1 to talk yours out, or email him with
                     follow-up questions.
                   </p>
-                  <div className="mt-5 flex flex-wrap gap-3">
+                  <div className="mt-5 grid grid-cols-1 gap-3 min-[480px]:grid-cols-2">
                     <a
                       href="https://jeffkazzee.zo.space/work-with-me"
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-full bg-[var(--d-teal)] px-5 py-2.5 text-sm font-medium text-white dark:text-[#171614] transition hover:bg-[var(--d-teal-dark)]"
+                      className="rounded-full bg-[var(--d-teal)] px-4 py-2.5 text-center text-sm font-medium text-white dark:text-[#171614] transition hover:bg-[var(--d-teal-dark)]"
                     >
                       Book a 1:1 with Jeff
                     </a>
@@ -401,7 +401,7 @@ export default function Landing() {
                       href="https://jeffkazzee.zo.space"
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-full border border-[var(--d-line)] px-5 py-2.5 text-sm font-medium text-[var(--d-ink)] transition hover:border-[var(--d-teal)]"
+                      className="rounded-full border border-[var(--d-line)] px-4 py-2.5 text-center text-sm font-medium text-[var(--d-ink)] transition hover:border-[var(--d-teal)]"
                     >
                       jeffkazzee.zo.space
                     </a>
@@ -430,12 +430,12 @@ export default function Landing() {
                     world knowledge — the same idea as your second brain, taken
                     to planetary scale. Sign up to follow the build.
                   </p>
-                  <div className="mt-5 flex flex-wrap gap-3">
+                  <div className="mt-5 grid grid-cols-1 gap-3 min-[480px]:grid-cols-2">
                     <a
                       href="https://wazoo.dev"
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-full bg-[var(--d-coral)] px-5 py-2.5 text-sm font-medium text-[#171614] transition hover:bg-[var(--d-coral-ink)]"
+                      className="rounded-full bg-[var(--d-coral)] px-4 py-2.5 text-center text-sm font-medium text-[#171614] transition hover:bg-[var(--d-coral-ink)]"
                     >
                       Sign up for Wazoo
                     </a>
@@ -443,7 +443,7 @@ export default function Landing() {
                       href="https://www.linkedin.com/in/etok/"
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-full border border-[var(--d-line)] px-5 py-2.5 text-sm font-medium text-[var(--d-ink)] transition hover:border-[var(--d-coral)]"
+                      className="rounded-full border border-[var(--d-line)] px-4 py-2.5 text-center text-sm font-medium text-[var(--d-ink)] transition hover:border-[var(--d-coral)]"
                     >
                       Ethan on LinkedIn
                     </a>
