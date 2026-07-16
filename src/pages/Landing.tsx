@@ -225,6 +225,277 @@ function VocabularyCardDeck() {
   );
 }
 
+function ConceptGraphic({ index }: { index: number }) {
+  const svgProps = {
+    viewBox: "0 0 120 120",
+    fill: "none",
+    "aria-hidden": true as const,
+  };
+
+  // 0 — Frontmatter / metadata: a document with a labeled header band.
+  if (index === 0) {
+    return (
+      <svg {...svgProps} className="h-full w-full">
+        <rect
+          x="30"
+          y="16"
+          width="60"
+          height="88"
+          rx="7"
+          className="fill-[var(--d-canvas)] stroke-[var(--d-line)]"
+          strokeWidth="2"
+        />
+        <circle cx="41" cy="28" r="2.5" className="fill-[var(--d-teal)]" />
+        <line
+          x1="49"
+          y1="28"
+          x2="80"
+          y2="28"
+          className="stroke-[var(--d-teal)]"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+        <circle cx="41" cy="37" r="2.5" className="fill-[var(--d-teal)]" />
+        <line
+          x1="49"
+          y1="37"
+          x2="72"
+          y2="37"
+          className="stroke-[var(--d-teal)]"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+        <line
+          x1="30"
+          y1="48"
+          x2="90"
+          y2="48"
+          className="stroke-[var(--d-line)]"
+          strokeWidth="1.5"
+        />
+        {[61, 71, 81, 91].map((y, i) => (
+          <line
+            key={y}
+            x1="40"
+            y1={y}
+            x2={i === 3 ? 66 : 80}
+            y2={y}
+            className="stroke-[var(--d-slate)]"
+            strokeWidth="2"
+            strokeLinecap="round"
+            opacity="0.45"
+          />
+        ))}
+      </svg>
+    );
+  }
+
+  // 1 — Progressive disclosure: stacked rows, the middle one expanded.
+  if (index === 1) {
+    return (
+      <svg {...svgProps} className="h-full w-full">
+        <rect
+          x="26"
+          y="22"
+          width="68"
+          height="16"
+          rx="4"
+          className="fill-[var(--d-canvas)] stroke-[var(--d-line)]"
+          strokeWidth="2"
+        />
+        <line
+          x1="34"
+          y1="30"
+          x2="60"
+          y2="30"
+          className="stroke-[var(--d-slate)]"
+          strokeWidth="2"
+          strokeLinecap="round"
+          opacity="0.45"
+        />
+        <rect
+          x="26"
+          y="43"
+          width="68"
+          height="34"
+          rx="5"
+          className="fill-[var(--d-teal-panel)] stroke-[var(--d-teal)]"
+          strokeWidth="2"
+        />
+        <line
+          x1="34"
+          y1="53"
+          x2="70"
+          y2="53"
+          className="stroke-[var(--d-teal)]"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+        <line
+          x1="34"
+          y1="62"
+          x2="82"
+          y2="62"
+          className="stroke-[var(--d-slate)]"
+          strokeWidth="2"
+          strokeLinecap="round"
+          opacity="0.55"
+        />
+        <line
+          x1="34"
+          y1="70"
+          x2="76"
+          y2="70"
+          className="stroke-[var(--d-slate)]"
+          strokeWidth="2"
+          strokeLinecap="round"
+          opacity="0.55"
+        />
+        <rect
+          x="26"
+          y="82"
+          width="68"
+          height="16"
+          rx="4"
+          className="fill-[var(--d-canvas)] stroke-[var(--d-line)]"
+          strokeWidth="2"
+        />
+        <line
+          x1="34"
+          y1="90"
+          x2="54"
+          y2="90"
+          className="stroke-[var(--d-slate)]"
+          strokeWidth="2"
+          strokeLinecap="round"
+          opacity="0.45"
+        />
+      </svg>
+    );
+  }
+
+  // 2 — Loops: two arcs forming a slow, self-healing cycle.
+  return (
+    <svg
+      {...svgProps}
+      className="h-full w-full origin-center animate-spin [animation-duration:14s] motion-reduce:animate-none"
+    >
+      <path
+        d="M60 30 A30 30 0 0 1 90 60"
+        className="stroke-[var(--d-teal)]"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      <polyline
+        points="83,57 90,64 97,57"
+        className="fill-none stroke-[var(--d-teal)]"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M60 90 A30 30 0 0 1 30 60"
+        className="stroke-[var(--d-teal)]"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      <polyline
+        points="23,63 30,56 37,63"
+        className="fill-none stroke-[var(--d-teal)]"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="60" cy="60" r="3.5" className="fill-[var(--d-coral)]" />
+    </svg>
+  );
+}
+
+function DeeperConceptCarousel() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const total = deeperVocab.length;
+  const go = (n: number) => setActiveIndex((n + total) % total);
+  const active = deeperVocab[activeIndex];
+
+  return (
+    <div className="mt-12 space-y-6">
+      {/* Concept navigator */}
+      <div className="flex flex-wrap justify-center gap-2 border-b border-[var(--d-line)] pb-4">
+        {deeperVocab.map((v, i) => (
+          <button
+            key={v.term}
+            type="button"
+            aria-pressed={activeIndex === i}
+            onClick={() => setActiveIndex(i)}
+            className={`rounded-full px-3 py-1.5 font-mono text-[12px] tracking-wider transition ${
+              activeIndex === i
+                ? "bg-[var(--d-teal)] text-white dark:text-[#171614]"
+                : "border border-[var(--d-line)] bg-[var(--d-card)] text-[var(--d-slate)] hover:border-[var(--d-teal)] hover:text-[var(--d-ink)]"
+            }`}
+          >
+            {v.term}
+          </button>
+        ))}
+      </div>
+
+      {/* One concept at a time */}
+      <div className="relative overflow-hidden rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] sm:min-h-[232px]">
+        <div
+          key={activeIndex}
+          aria-live="polite"
+          aria-atomic="true"
+          className="flex flex-col items-center gap-8 duration-500 animate-in fade-in slide-in-from-bottom-2 motion-reduce:animate-none sm:flex-row sm:items-center sm:gap-10"
+        >
+          <div className="flex size-32 shrink-0 items-center justify-center rounded-2xl border border-[var(--d-line)] bg-[var(--d-canvas)] p-6 sm:size-40">
+            <ConceptGraphic index={activeIndex} />
+          </div>
+          <div className="text-center sm:text-left">
+            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--d-coral-ink)]">
+              Concept {activeIndex + 1} of {total}
+            </span>
+            <h3 className="mt-3 font-serif text-2xl font-semibold tracking-tight text-[var(--d-ink)] sm:text-3xl">
+              {active.term}
+            </h3>
+            <p className="mt-3 text-[17px] leading-8 text-[var(--d-slate)] text-pretty">
+              {active.plain}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Controls */}
+      <div className="flex items-center justify-between gap-4">
+        <button
+          type="button"
+          onClick={() => go(activeIndex - 1)}
+          aria-label="Previous concept"
+          className="rounded-full border border-[var(--d-line)] bg-[var(--d-canvas)] px-4 py-2 font-mono text-[12px] text-[var(--d-slate)] transition hover:border-[var(--d-teal)] hover:text-[var(--d-ink)]"
+        >
+          ← Previous
+        </button>
+        <div className="flex gap-1.5">
+          {deeperVocab.map((_, i) => (
+            <span
+              key={i}
+              className={`h-2 rounded-full transition-all ${
+                activeIndex === i ? "w-4 bg-[var(--d-teal)]" : "w-2 bg-[var(--d-line)]"
+              }`}
+            />
+          ))}
+        </div>
+        <button
+          type="button"
+          onClick={() => go(activeIndex + 1)}
+          aria-label="Next concept"
+          className="rounded-full border border-[var(--d-line)] bg-[var(--d-canvas)] px-4 py-2 font-mono text-[12px] text-[var(--d-slate)] transition hover:border-[var(--d-teal)] hover:text-[var(--d-ink)]"
+        >
+          Next →
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function Landing() {
   return (
     <div
@@ -809,21 +1080,7 @@ export default function Landing() {
               stay healthy.
             </p>
 
-            <dl className="mt-12 grid gap-x-12 gap-y-8 sm:grid-cols-3">
-              {deeperVocab.map((v) => (
-                <div
-                  key={v.term}
-                  className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-5"
-                >
-                  <dt className="font-mono text-[13px] font-medium uppercase tracking-[0.12em] text-[var(--d-teal-ink)]">
-                    {v.term}
-                  </dt>
-                  <dd className="mt-2 leading-7 text-[var(--d-slate)]">
-                    {v.plain}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+            <DeeperConceptCarousel />
 
             <div className="mt-12 grid gap-10 lg:gap-14 lg:grid-cols-2">
               <div>
