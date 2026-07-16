@@ -181,7 +181,7 @@ function VocabularyCardDeck() {
 
         {/* Responsive Controls Wrapper */}
         <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-between sm:gap-2">
-          <div className="flex items-center gap-3 w-full justify-between sm:w-auto">
+          <div className="flex flex-wrap items-center gap-3 w-full justify-between sm:w-auto">
             <button
               type="button"
               onClick={prev}
@@ -369,6 +369,10 @@ export default function Landing() {
                 <img
                   src="/images/jeff.jpg"
                   alt="Jeff Kazzee"
+                  width={160}
+                  height={160}
+                  loading="lazy"
+                  decoding="async"
                   className="size-20 rounded-full object-cover border border-[var(--d-line)] shadow-sm shrink-0"
                 />
                 <div>
@@ -408,6 +412,10 @@ export default function Landing() {
                 <img
                   src="/images/ethan.jpg"
                   alt="Ethan Davidson"
+                  width={160}
+                  height={160}
+                  loading="lazy"
+                  decoding="async"
                   className="size-20 rounded-full object-cover border border-[var(--d-line)] shadow-sm shrink-0"
                 />
                 <div>
@@ -543,9 +551,12 @@ export default function Landing() {
               <div className="space-y-4">
                 <figure className="relative">
                   <img
-                    src="/images/joannas_second_brain.jpg"
+                    src="/images/joannas-second-brain.webp"
                     alt="Mockup of Joanna's second brain workspace in Zo, showing files like USER.md and AGENTS.md."
+                    width={768}
+                    height={768}
                     loading="lazy"
+                    decoding="async"
                     className="w-full rounded-2xl border border-[var(--d-line)] shadow-[0_24px_80px_rgba(0,0,0,0.12)]"
                   />
                   <figcaption className="mt-3 text-center font-mono text-[11px] text-[var(--d-slate)]">
@@ -582,44 +593,29 @@ export default function Landing() {
               <h3 className="mt-3 font-serif text-2xl font-semibold tracking-tight sm:text-3xl">
                 Why do you want a second brain?
               </h3>
-              <div className="mt-8 grid gap-6 sm:grid-cols-3">
-                <div className="rounded-none border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
-                  <span className="text-3xl" role="img" aria-label="brain">
-                    🧠
-                  </span>
-                  <h4 className="mt-4 font-serif text-lg font-semibold">
+              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                <div className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-5 shadow-sm">
+                  <h4 className="font-serif text-lg font-semibold">
                     Remember for you
                   </h4>
                   <p className="mt-2 text-sm leading-6 text-[var(--d-slate)]">
-                    Save your projects, client notes, and plans in one place.
-                    Offload the mental overhead of tracking a million details.
+                    Remember projects, people, and plans.
                   </p>
                 </div>
-                <div className="rounded-none border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm border-l-4 border-l-[var(--d-teal)]">
-                  <span className="text-3xl" role="img" aria-label="user">
-                    👤
-                  </span>
-                  <h4 className="mt-4 font-serif text-lg font-semibold">
+                <div className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-5 shadow-sm">
+                  <h4 className="font-serif text-lg font-semibold">
                     Work like you
                   </h4>
                   <p className="mt-2 text-sm leading-6 text-[var(--d-slate)]">
-                    Your AI reads{" "}
-                    <code className="font-mono text-[11px]">USER.md</code> and{" "}
-                    <code className="font-mono text-[11px]">WORK.md</code>{" "}
-                    before drafting messages, acting with your exact voice and
-                    standards.
+                    Write in your voice and standards.
                   </p>
                 </div>
-                <div className="rounded-none border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
-                  <span className="text-3xl" role="img" aria-label="lightning">
-                    ⚡
-                  </span>
-                  <h4 className="mt-4 font-serif text-lg font-semibold">
+                <div className="rounded-xl border border-[var(--d-line)] bg-[var(--d-card)] p-5 shadow-sm">
+                  <h4 className="font-serif text-lg font-semibold">
                     Work while you sleep
                   </h4>
                   <p className="mt-2 text-sm leading-6 text-[var(--d-slate)]">
-                    Codify background rules and schedule maintenance loops to
-                    clean stale files and run automation tasks overnight.
+                    Run maintenance and automation overnight.
                   </p>
                 </div>
               </div>
@@ -903,7 +899,7 @@ export default function Landing() {
             <div className="mt-12 grid gap-8 sm:grid-cols-2">
               <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
                 <h3 className="font-serif text-xl font-semibold text-[var(--d-ink)]">
-                  🚀 Zero-Setup Context
+                  Zero-Setup Context
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-[var(--d-slate)]">
                   Instantly educate your AI on your specific business goals,
@@ -913,7 +909,7 @@ export default function Landing() {
               </div>
               <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
                 <h3 className="font-serif text-xl font-semibold text-[var(--d-ink)]">
-                  ✨ Hallucination-Free Drafts
+                  Hallucination-Free Drafts
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-[var(--d-slate)]">
                   The AI reads your local files to mirror your exact style and
@@ -923,7 +919,7 @@ export default function Landing() {
               </div>
               <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
                 <h3 className="font-serif text-xl font-semibold text-[var(--d-ink)]">
-                  🛡️ Safe Automation Gates
+                  Safe Automation Gates
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-[var(--d-slate)]">
                   Define approval gates in{" "}
@@ -936,7 +932,7 @@ export default function Landing() {
               </div>
               <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm">
                 <h3 className="font-serif text-xl font-semibold text-[var(--d-ink)]">
-                  🔄 Dynamic Auto-Updates
+                  Dynamic Auto-Updates
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-[var(--d-slate)]">
                   Your AI's memory heals its own stale links and updates index
