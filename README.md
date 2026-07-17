@@ -33,6 +33,8 @@ Source: [github.com/Jeff-Kazzee/second-brain-site](https://github.com/Jeff-Kazze
 - The Vite development handler in `server.ts` preserves query strings so raw imports such as `?raw` work correctly.
 - Published publicly as a Zo Site on 2026-07-15. The source is maintained in a standalone public GitHub repository so unrelated workspace history and files cannot enter the release.
 
+- The community library section (`#library`) invites ad hoc second-brain submissions through a structured GitHub issue form, links to browse open submissions, and includes a copyable submission starter. Submissions are explicitly safety-scoped and require maintainer review before publication.
+
 ## Commands
 
 ```bash
