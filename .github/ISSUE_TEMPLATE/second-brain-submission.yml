@@ -1,0 +1,68 @@
+name: Second brain library submission
+description: Share a safe, reusable Zo second-brain pattern with the community
+title: "Library submission: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sharing. Please submit only material you are comfortable making public. Do not include credentials, private notes, personal contact details, client data, or account-specific information.
+
+        Maintainers review submissions before adding them to the community library.
+  - type: input
+    id: name
+    attributes:
+      label: Name
+      description: Give this second brain a short, memorable name.
+      placeholder: Weekly project command center
+    validations:
+      required: true
+  - type: textarea
+    id: use-case
+    attributes:
+      label: What do you use it for?
+      description: Explain the job this second brain helps you do.
+      placeholder: I use it to keep project decisions, follow-ups, and recurring workflows in one place.
+    validations:
+      required: true
+  - type: input
+    id: audience
+    attributes:
+      label: Who is it for?
+      placeholder: Independent builders, small teams, or anyone managing recurring projects
+  - type: textarea
+    id: structure
+    attributes:
+      label: Folder and file structure
+      description: Share the reusable shape without including private content.
+      render: text
+      placeholder: |
+        brain/
+        ├── AGENTS.md
+        ├── USER.md
+        ├── WORK.md
+        ├── PEOPLE.md
+        └── NOTES.md
+  - type: textarea
+    id: prompts
+    attributes:
+      label: Key AGENTS.md rules or prompts
+      description: Share the instructions or prompts that make the system useful.
+      render: markdown
+  - type: textarea
+    id: lessons
+    attributes:
+      label: What did you learn?
+      description: Include setup tips, tradeoffs, or lessons that could help someone else.
+  - type: input
+    id: links
+    attributes:
+      label: Public link or screenshots
+      description: Optional. Link only to material that is safe to share publicly.
+      placeholder: https://...
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed private, sensitive, and account-specific information, and I am comfortable sharing this submission publicly.
+          required: true

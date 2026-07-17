@@ -430,6 +430,98 @@ function ConceptGraphic({ index }: { index: number }) {
   );
 }
 
+const brainLibraryPrompt = `I built a Zo second brain and would like to share a safe, reusable version with the community.
+
+Name:
+What I use it for:
+Who it is for:
+Folder/file structure:
+Key AGENTS.md rules or prompts:
+What I learned:
+Link or screenshots:
+
+I have removed private, sensitive, and account-specific information. Please ask if anything needs clarification before publishing.`;
+
+function BrainLibrarySection() {
+  return (
+    <section
+      id="library"
+      aria-labelledby="library-h"
+      className="border-b border-[var(--d-line)] bg-[var(--d-coral-panel)]"
+    >
+      <div className="mx-auto max-w-5xl px-5 py-24 sm:px-8 sm:py-32">
+        <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+          <div>
+            <SectionKicker>
+              Community library · Ad hoc submissions
+            </SectionKicker>
+            <h2
+              id="library-h"
+              className="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl text-balance"
+            >
+              Show us what you built
+            </h2>
+            <p className="mt-4 max-w-2xl leading-8 text-[var(--d-slate)]">
+              Your second brain does not have to look like anyone else's. Share
+              a safe, reusable pattern so the community can learn from real Zo
+              workspaces and build on what already works.
+            </p>
+            <div className="mt-7 space-y-3 text-sm leading-7 text-[var(--d-slate)]">
+              <p>
+                <strong className="text-[var(--d-ink)]">
+                  Good submissions:
+                </strong>{" "}
+                a use case, folder map, helpful prompts, lessons learned, or a
+                redacted public link.
+              </p>
+              <p>
+                <strong className="text-[var(--d-ink)]">
+                  Please leave out:
+                </strong>{" "}
+                private notes, credentials, personal contact details, client
+                data, and anything you would not want posted publicly.
+              </p>
+            </div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href="https://github.com/Jeff-Kazzee/second-brain-site/issues/new?template=second-brain-submission.yml"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center rounded-full bg-[var(--d-coral)] px-6 py-3 font-medium text-[#171614] transition hover:bg-[var(--d-coral-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d-amber)]"
+              >
+                Submit a second brain
+              </a>
+              <a
+                href="https://github.com/Jeff-Kazzee/second-brain-site/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%22Library+submission%22"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center rounded-full border border-[var(--d-line)] bg-[var(--d-canvas)] px-6 py-3 font-medium text-[var(--d-ink)] transition hover:border-[var(--d-teal)] hover:text-[var(--d-teal-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d-amber)]"
+              >
+                Browse submissions
+              </a>
+            </div>
+          </div>
+          <div className="rounded-2xl border border-[var(--d-line)] bg-[var(--d-card)] p-6 shadow-sm sm:p-8">
+            <div className="flex items-center justify-between gap-4">
+              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--d-teal-ink)]">
+                Submission starter
+              </span>
+              <CopyChip text={brainLibraryPrompt} label="Copy template" />
+            </div>
+            <pre className="mt-5 overflow-x-hidden whitespace-pre-wrap break-words rounded-xl border border-[var(--d-line)] bg-[var(--d-terminal)] p-5 font-mono text-[12.5px] leading-6 text-[var(--d-terminal-text)]">
+              <PromptCode text={brainLibraryPrompt} />
+            </pre>
+            <p className="mt-4 text-sm leading-6 text-[var(--d-slate)]">
+              The form opens a GitHub issue for review. A submission is not
+              published automatically; the maintainers will review it first.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function DeeperConceptCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
   const total = deeperVocab.length;
@@ -497,7 +589,9 @@ function DeeperConceptCarousel() {
             <span
               key={i}
               className={`h-2 rounded-full transition-all ${
-                activeIndex === i ? "w-4 bg-[var(--d-teal)]" : "w-2 bg-[var(--d-line)]"
+                activeIndex === i
+                  ? "w-4 bg-[var(--d-teal)]"
+                  : "w-2 bg-[var(--d-line)]"
               }`}
             />
           ))}
@@ -542,7 +636,9 @@ function BenefitGraphic({ index }: { index: number }) {
             y1={y}
             x2={i === 0 ? 44 : i === 3 ? 40 : 49}
             y2={y}
-            className={i === 0 ? "stroke-[var(--d-teal)]" : "stroke-[var(--d-slate)]"}
+            className={
+              i === 0 ? "stroke-[var(--d-teal)]" : "stroke-[var(--d-slate)]"
+            }
             strokeWidth="2.5"
             strokeLinecap="round"
             opacity={i === 0 ? "1" : "0.45"}
@@ -602,7 +698,13 @@ function BenefitGraphic({ index }: { index: number }) {
             opacity="0.45"
           />
         ))}
-        <circle cx="42" cy="82" r="8" className="fill-[var(--d-teal-panel)] stroke-[var(--d-teal)]" strokeWidth="2" />
+        <circle
+          cx="42"
+          cy="82"
+          r="8"
+          className="fill-[var(--d-teal-panel)] stroke-[var(--d-teal)]"
+          strokeWidth="2"
+        />
         <polyline
           points="38,82 41,85 46,79"
           className="fill-none stroke-[var(--d-teal)]"
@@ -762,7 +864,9 @@ function BenefitsCarousel() {
             <span
               key={i}
               className={`h-2 rounded-full transition-all ${
-                activeIndex === i ? "w-4 bg-[var(--d-teal)]" : "w-2 bg-[var(--d-line)]"
+                activeIndex === i
+                  ? "w-4 bg-[var(--d-teal)]"
+                  : "w-2 bg-[var(--d-line)]"
               }`}
             />
           ))}
@@ -859,6 +963,12 @@ export default function Landing() {
               className="transition hover:text-[var(--d-teal-ink)]"
             >
               Outcomes
+            </a>
+            <a
+              href="#library"
+              className="transition hover:text-[var(--d-teal-ink)]"
+            >
+              Library
             </a>
           </nav>
           <ThemeToggle />
@@ -1424,6 +1534,8 @@ export default function Landing() {
             <BenefitsCarousel />
           </div>
         </section>
+
+        <BrainLibrarySection />
 
         {/* Section 7: Show & Tell (Q4) */}
         <section id="showtell" className="border-b border-[var(--d-line)]">
